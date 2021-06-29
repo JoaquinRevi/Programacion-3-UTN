@@ -182,5 +182,18 @@ namespace ManejadorDeArchivos
 
             }
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
+            try
+            {
+                info_label.Text = "archivo: " + f.Name + "  tamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
+            }
+            catch (Exception ez)
+            {
+                info_label.Text = "";
+            }
+        }
     }
 }
