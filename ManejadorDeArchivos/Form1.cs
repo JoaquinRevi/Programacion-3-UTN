@@ -14,18 +14,23 @@ namespace ManejadorDeArchivos
 {
     public partial class Form1 : Form
     {
-        private string ruta = @"C:/";
+        static string ruta = @"C:/";
+        private string ruta2 = @"D:/";
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
+        DirectoryInfo dir1;
+        ////DirectoryInfo dir2; 
         public Form1()
         {
             InitializeComponent();
+            info_label.Text = "Bienvenido!";
+            
         }
         private void loadButtonAction()
         {
             removerbarra();
             ruta = tboxRuta.Text;
-            cargarDirectoriosyArchivos();
+            cargarDirectoriosyArchivos(dir1);
             booleano = false;
         }
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -51,9 +56,9 @@ namespace ManejadorDeArchivos
             }
         }
 
-        private void cargarDirectoriosyArchivos()
+        private void cargarDirectoriosyArchivos(DirectoryInfo listaDeArchivos)
         {
-            DirectoryInfo listaDeArchivos;
+            //DirectoryInfo listaDeArchivos;
             string archivo = string.Empty;
             try
             {
@@ -67,7 +72,7 @@ namespace ManejadorDeArchivos
                 }
                 else
                 {
-                    listaDeArchivos = new DirectoryInfo(ruta);
+                    //listaDeArchivos = new DirectoryInfo(ruta);
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
                     listView1.Items.Clear();
@@ -87,6 +92,7 @@ namespace ManejadorDeArchivos
             {
 
             }
+          
 
         }
 
@@ -98,8 +104,80 @@ namespace ManejadorDeArchivos
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            textBox_name.Visible = false;
+            dir1 = new DirectoryInfo(ruta);
+            DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
-            cargarDirectoriosyArchivos();
+            cargarDirectoriosyArchivos(dir1);
+           
+            tvFile.Nodes.Add(armarArbol(dir1));
+          
+            tvFile.Nodes.Add(armarArbol(dir2));
+        }
+
+        private TreeNode armarArbol(DirectoryInfo listaDeArchivos)
+        {
+            TreeNode treenode = new TreeNode();
+            //DirectoryInfo listaDeArchivos;
+            string archivo = string.Empty;
+            try
+            {
+                if (booleano)
+                {
+                    archivo = ruta + "//" + rutaDeArchivoSeleccionado;
+                    FileInfo detalles = new FileInfo(archivo);
+                    //info del archivo
+
+                    Process.Start(archivo);
+                }
+                else
+                {
+                    
+                    
+                    FileInfo[] archivos = listaDeArchivos.GetFiles();
+                    DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
+                    treenode = new TreeNode(listaDeArchivos.Name);
+                   
+
+                    foreach (var arch in archivos)
+                    {
+                        treenode.Nodes.Add("", arch.Name,1);
+                        
+                    }
+
+                    foreach (var d in directorios)
+                    {
+                        treenode.Nodes.Add("", d.Name, 0);
+                    
+                    }
+                    return treenode;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            //TreeNode treenode = new TreeNode(dir.Name);
+            //try
+            //{
+            //    foreach (var arch in dir.GetDirectories())
+            //    {
+            //        treenode.Nodes.Add(armarArbol(arch));
+
+            //    }
+            //    foreach (var arch in dir.GetDirectories())
+            //    {
+            //        treenode.Nodes.Add(arch.Name);
+
+            //    }
+            //}
+            //catch (Exception er) 
+            //{
+
+            //}
+            return treenode;
         }
 
         private void btnAdelante_Click(object sender, EventArgs e)
@@ -188,12 +266,37 @@ namespace ManejadorDeArchivos
             FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
             try
             {
-                info_label.Text = "archivo: " + f.Name + "  tamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
+                textBox_name.Visible = true;
+                editar_button.Visible = true;
+                info_label.Text = "archivo: " + f.Name + "\ntamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
+                
             }
             catch (Exception ez)
             {
                 info_label.Text = "";
             }
+
+
+        }
+
+        private void info_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvFile_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void editar_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

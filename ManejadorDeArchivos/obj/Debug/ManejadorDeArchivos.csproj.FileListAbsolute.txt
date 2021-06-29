@@ -8,3 +8,13 @@ C:\Users\Reviriego\source\repos\ManejadorDeArchivos\ManejadorDeArchivos\obj\Debu
 C:\Users\Reviriego\source\repos\ManejadorDeArchivos\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.csproj.CoreCompileInputs.cache
 C:\Users\Reviriego\source\repos\ManejadorDeArchivos\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.exe
 C:\Users\Reviriego\source\repos\ManejadorDeArchivos\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.pdb
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\bin\Debug\ManejadorDeArchivos.exe.config
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\bin\Debug\ManejadorDeArchivos.exe
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\bin\Debug\ManejadorDeArchivos.pdb
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.csprojAssemblyReference.cache
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form1.resources
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Properties.Resources.resources
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.csproj.GenerateResource.cache
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.csproj.CoreCompileInputs.cache
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.exe
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.pdb
