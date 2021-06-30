@@ -90,6 +90,7 @@ namespace ManejadorDeArchivos
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.groupBox4.Controls.Add(this.listView3);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox4.Location = new System.Drawing.Point(0, 274);
@@ -100,6 +101,7 @@ namespace ManejadorDeArchivos
             // 
             // listView3
             // 
+            this.listView3.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -113,7 +115,6 @@ namespace ManejadorDeArchivos
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
-            this.listView3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView3_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -139,6 +140,7 @@ namespace ManejadorDeArchivos
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Controls.Add(this.tvFile);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -149,6 +151,7 @@ namespace ManejadorDeArchivos
             // 
             // tvFile
             // 
+            this.tvFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvFile.ImageIndex = 0;
             this.tvFile.ImageList = this.iconList;
