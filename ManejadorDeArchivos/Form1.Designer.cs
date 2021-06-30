@@ -143,12 +143,13 @@ namespace ManejadorDeArchivos
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Controls.Add(this.tvFile);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(322, 530);
+            this.groupBox3.Size = new System.Drawing.Size(322, 277);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // tvFile
             // 
@@ -159,8 +160,11 @@ namespace ManejadorDeArchivos
             this.tvFile.Location = new System.Drawing.Point(3, 16);
             this.tvFile.Name = "tvFile";
             this.tvFile.SelectedImageIndex = 0;
-            this.tvFile.Size = new System.Drawing.Size(316, 511);
+            this.tvFile.Size = new System.Drawing.Size(316, 258);
             this.tvFile.TabIndex = 0;
+            this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
+            this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
+            this.tvFile.Click += new System.EventHandler(this.tvFile_Click);
             // 
             // groupBox2
             // 

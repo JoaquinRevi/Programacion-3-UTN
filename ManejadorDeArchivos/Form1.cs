@@ -20,6 +20,7 @@ namespace ManejadorDeArchivos
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
         DirectoryInfo dir1;
+        List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();  
 
         public Form1()
         {
@@ -382,11 +383,40 @@ namespace ManejadorDeArchivos
                 {
                     string path = fbd.SelectedPath;
                     DirectoryInfo di = new DirectoryInfo(path);
+                    directoriosArbol.Add(di);
                     //TreeNode treenode = new TreeNode(di.Name);
                     tvFile.Nodes.Add(armarArbol(di));
+
                 }
                 
             }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvFile_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void tvFile_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            foreach(DirectoryInfo dir in directoriosArbol) 
+            {
+                if (dir.FullName.Contains(e.Node.Text))
+                {
+                    MessageBox.Show(dir.FullName);
+                }
+            }
+            
         }
     }
 }
