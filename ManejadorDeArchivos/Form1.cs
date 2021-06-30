@@ -30,7 +30,7 @@ namespace ManejadorDeArchivos
         {
             removerbarra();
             ruta = tboxRuta.Text;
-            cargarDirectoriosyArchivos(dir1);
+            cargarDirectoriosyArchivos();
             booleano = false;
         }
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -56,9 +56,9 @@ namespace ManejadorDeArchivos
             }
         }
 
-        private void cargarDirectoriosyArchivos(DirectoryInfo listaDeArchivos)
+        private void cargarDirectoriosyArchivos()
         {
-            //DirectoryInfo listaDeArchivos;
+            DirectoryInfo listaDeArchivos;
             string archivo = string.Empty;
             try
             {
@@ -72,7 +72,7 @@ namespace ManejadorDeArchivos
                 }
                 else
                 {
-                    //listaDeArchivos = new DirectoryInfo(ruta);
+                    listaDeArchivos = new DirectoryInfo(ruta);
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
                     listView1.Items.Clear();
@@ -108,8 +108,8 @@ namespace ManejadorDeArchivos
             dir1 = new DirectoryInfo(ruta);
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
-            cargarDirectoriosyArchivos(dir1);
-           
+            cargarDirectoriosyArchivos();
+
             tvFile.Nodes.Add(armarArbol(dir1));
           
             tvFile.Nodes.Add(armarArbol(dir2));
@@ -136,19 +136,21 @@ namespace ManejadorDeArchivos
                     
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
+                   
                     treenode = new TreeNode(listaDeArchivos.Name);
                    
 
                     foreach (var arch in archivos)
                     {
                         treenode.Nodes.Add("", arch.Name,1);
+
                         
                     }
 
                     foreach (var d in directorios)
                     {
                         treenode.Nodes.Add("", d.Name, 0);
-                    
+                        
                     }
                     return treenode;
                 }
@@ -295,6 +297,56 @@ namespace ManejadorDeArchivos
         }
 
         private void editar_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            //TreeNode treenode = e.Node;
+            //listView2.Items.Clear();
+            //DirectoryInfo dirNodo = (DirectoryInfo)treenode.Tag;
+            //ListViewItem.ListViewSubItem[] subItems;
+            //ListViewItem item = null;
+            ////MessageBox.Show(dirNodo.FullName);
+            //foreach (DirectoryInfo dir in dirNodo.GetDirectories())
+            //{
+            //    item = new ListViewItem(dir.Name, 0);
+            //    subItems = new ListViewItem.ListViewSubItem[]
+            //        {new ListViewItem.ListViewSubItem(item, "Directory"),
+            // new ListViewItem.ListViewSubItem(item,
+            //    dir.LastAccessTime.ToShortDateString())};
+            //    item.SubItems.AddRange(subItems);
+            //    listView1.Items.Add(item);
+            //}
+            //foreach (FileInfo file in dirNodo.GetFiles())
+            //{
+            //    item = new ListViewItem(file.Name, 1);
+            //    subItems = new ListViewItem.ListViewSubItem[]
+            //        { new ListViewItem.ListViewSubItem(item, "File"),
+            // new ListViewItem.ListViewSubItem(item,
+            //    file.LastAccessTime.ToShortDateString())};
+
+            //    item.SubItems.AddRange(subItems);
+            //    listView1.Items.Add(item);
+            //}
+
+            //listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            //armarArbol(dirNodo);
+        }
+
+        private void listView3_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
         }

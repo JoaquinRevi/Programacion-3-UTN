@@ -32,7 +32,6 @@ namespace ManejadorDeArchivos
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tvFile = new System.Windows.Forms.TreeView();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -54,6 +53,13 @@ namespace ManejadorDeArchivos
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.labeleditar = new System.Windows.Forms.Label();
             this.editar_button = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tvFile = new System.Windows.Forms.TreeView();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,6 +67,8 @@ namespace ManejadorDeArchivos
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -72,7 +80,8 @@ namespace ManejadorDeArchivos
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tvFile);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
             // 
             // splitContainer1.Panel2
             // 
@@ -81,19 +90,6 @@ namespace ManejadorDeArchivos
             this.splitContainer1.Size = new System.Drawing.Size(968, 530);
             this.splitContainer1.SplitterDistance = 322;
             this.splitContainer1.TabIndex = 27;
-            // 
-            // tvFile
-            // 
-            this.tvFile.BackColor = System.Drawing.SystemColors.Control;
-            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvFile.ImageIndex = 0;
-            this.tvFile.ImageList = this.iconList;
-            this.tvFile.Location = new System.Drawing.Point(0, 0);
-            this.tvFile.Name = "tvFile";
-            this.tvFile.SelectedImageIndex = 0;
-            this.tvFile.Size = new System.Drawing.Size(322, 530);
-            this.tvFile.TabIndex = 0;
-            this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
             // 
             // iconList
             // 
@@ -306,6 +302,67 @@ namespace ManejadorDeArchivos
             this.editar_button.UseVisualStyleBackColor = true;
             this.editar_button.Click += new System.EventHandler(this.editar_button_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tvFile);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(316, 261);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.listView3);
+            this.groupBox4.Location = new System.Drawing.Point(3, 270);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(316, 256);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            // 
+            // tvFile
+            // 
+            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvFile.ImageIndex = 0;
+            this.tvFile.ImageList = this.iconList;
+            this.tvFile.Location = new System.Drawing.Point(3, 16);
+            this.tvFile.Name = "tvFile";
+            this.tvFile.SelectedImageIndex = 0;
+            this.tvFile.Size = new System.Drawing.Size(310, 242);
+            this.tvFile.TabIndex = 0;
+            this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
+            // 
+            // listView3
+            // 
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView3.HideSelection = false;
+            this.listView3.Location = new System.Drawing.Point(3, 16);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(310, 237);
+            this.listView3.SmallImageList = this.iconList;
+            this.listView3.TabIndex = 0;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView3.SelectedIndexChanged += new System.EventHandler(this.listView3_SelectedIndexChanged);
+            this.listView3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView3_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Nombre";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Tipo";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Ultima modificación";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +391,8 @@ namespace ManejadorDeArchivos
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +401,6 @@ namespace ManejadorDeArchivos
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView tvFile;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -364,6 +422,13 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.Label labeleditar;
         private System.Windows.Forms.TextBox textBox_name;
         private System.Windows.Forms.Button editar_button;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TreeView tvFile;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
