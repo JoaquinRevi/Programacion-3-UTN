@@ -57,6 +57,7 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elegirDirectorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -312,7 +313,8 @@ namespace ManejadorDeArchivos
             this.opcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.guardarInformacionToolStripMenuItem,
             this.informacionDeSesionesAnterioresToolStripMenuItem,
-            this.cerrarToolStripMenuItem});
+            this.cerrarToolStripMenuItem,
+            this.elegirDirectorioToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.opcionesToolStripMenuItem.Text = "Opciones";
@@ -336,6 +338,13 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
+            // elegirDirectorioToolStripMenuItem
+            // 
+            this.elegirDirectorioToolStripMenuItem.Name = "elegirDirectorioToolStripMenuItem";
+            this.elegirDirectorioToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.elegirDirectorioToolStripMenuItem.Text = "Elegir Directorio";
+            this.elegirDirectorioToolStripMenuItem.Click += new System.EventHandler(this.elegirDirectorioToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -400,6 +409,7 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripMenuItem elegirDirectorioToolStripMenuItem;
     }
 }
 

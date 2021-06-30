@@ -161,9 +161,9 @@ namespace ManejadorDeArchivos
             cargarDirectoriosyArchivos();
             cargarDirectoriosyArchivosEnLista();
 
-            tvFile.Nodes.Add(armarArbol(dir1));
+            //tvFile.Nodes.Add(armarArbol(dir1));
           
-            tvFile.Nodes.Add(armarArbol(dir2));
+            //tvFile.Nodes.Add(armarArbol(dir2));
         }
 
         private TreeNode armarArbol(DirectoryInfo listaDeArchivos)
@@ -370,6 +370,23 @@ namespace ManejadorDeArchivos
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+       
+        private void elegirDirectorioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select your path." })
+            {
+
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    string path = fbd.SelectedPath;
+                    DirectoryInfo di = new DirectoryInfo(path);
+                    //TreeNode treenode = new TreeNode(di.Name);
+                    tvFile.Nodes.Add(armarArbol(di));
+                }
+                
+            }
         }
     }
 }
