@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace ManejadorDeArchivos
 {
@@ -19,7 +20,7 @@ namespace ManejadorDeArchivos
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
         DirectoryInfo dir1;
-        ////DirectoryInfo dir2; 
+
         public Form1()
         {
             InitializeComponent();
@@ -154,7 +155,6 @@ namespace ManejadorDeArchivos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox_name.Visible = false;
             dir1 = new DirectoryInfo(ruta);
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
@@ -212,24 +212,6 @@ namespace ManejadorDeArchivos
             }
 
 
-            //TreeNode treenode = new TreeNode(dir.Name);
-            //try
-            //{
-            //    foreach (var arch in dir.GetDirectories())
-            //    {
-            //        treenode.Nodes.Add(armarArbol(arch));
-
-            //    }
-            //    foreach (var arch in dir.GetDirectories())
-            //    {
-            //        treenode.Nodes.Add(arch.Name);
-
-            //    }
-            //}
-            //catch (Exception er) 
-            //{
-
-            //}
             return treenode;
         }
 
@@ -319,8 +301,6 @@ namespace ManejadorDeArchivos
             FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
             try
             {
-                textBox_name.Visible = true;
-                editar_button.Visible = true;
                 info_label.Text = "archivo: " + f.Name + "\ntamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
                 
             }
@@ -334,74 +314,58 @@ namespace ManejadorDeArchivos
 
 
 
-        private void info_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tvFile_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void editar_button_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            //TreeNode treenode = e.Node;
-            //listView2.Items.Clear();
-            //DirectoryInfo dirNodo = (DirectoryInfo)treenode.Tag;
-            //ListViewItem.ListViewSubItem[] subItems;
-            //ListViewItem item = null;
-            ////MessageBox.Show(dirNodo.FullName);
-            //foreach (DirectoryInfo dir in dirNodo.GetDirectories())
-            //{
-            //    item = new ListViewItem(dir.Name, 0);
-            //    subItems = new ListViewItem.ListViewSubItem[]
-            //        {new ListViewItem.ListViewSubItem(item, "Directory"),
-            // new ListViewItem.ListViewSubItem(item,
-            //    dir.LastAccessTime.ToShortDateString())};
-            //    item.SubItems.AddRange(subItems);
-            //    listView1.Items.Add(item);
-            //}
-            //foreach (FileInfo file in dirNodo.GetFiles())
-            //{
-            //    item = new ListViewItem(file.Name, 1);
-            //    subItems = new ListViewItem.ListViewSubItem[]
-            //        { new ListViewItem.ListViewSubItem(item, "File"),
-            // new ListViewItem.ListViewSubItem(item,
-            //    file.LastAccessTime.ToShortDateString())};
-
-            //    item.SubItems.AddRange(subItems);
-            //    listView1.Items.Add(item);
-            //}
-
-            //listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            //armarArbol(dirNodo);
-        }
 
         private void listView3_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             cargarDirectoriosyArchivosEnLista();
+        }
+
+        private void guardarInformacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XmlWriter archivoXml = XmlWriter.Create(@"C:\Users\Reviriego\Desktop\archivoxml.xml");
+            DirectoryInfo listaDeArchivos = new DirectoryInfo(ruta);
+            DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
+            FileInfo[] archivos = listaDeArchivos.GetFiles();
+            archivoXml.WriteStartDocument();
+
+            archivoXml.WriteStartElement("Ruta");
+            archivoXml.WriteStartElement("Carpetas");
+            foreach (var dir in directorios)
+            {
+                archivoXml.WriteStartElement("Nombre");
+                archivoXml.WriteString(dir.Name + "");
+                archivoXml.WriteEndElement();
+                archivoXml.WriteStartElement("Ult-Modificacion");
+                archivoXml.WriteString(dir.LastAccessTime + "");
+                archivoXml.WriteEndElement();
+                archivoXml.WriteStartElement("Creacion");
+                archivoXml.WriteString(dir.CreationTime + "");
+                archivoXml.WriteEndElement();
+            }
+            archivoXml.WriteEndElement();
+
+            archivoXml.WriteStartElement("Archivos");
+            foreach (var arch in archivos)
+            {
+                archivoXml.WriteStartElement("Nombre");
+                archivoXml.WriteString(arch.Name + "");
+                archivoXml.WriteEndElement();
+                archivoXml.WriteStartElement("Tamaño");
+                archivoXml.WriteString(arch.Length + "");
+                archivoXml.WriteEndElement();
+                archivoXml.WriteStartElement("Creacion");
+                archivoXml.WriteString(arch.CreationTime + "");
+                archivoXml.WriteEndElement();
+            }
+            archivoXml.WriteEndDocument();
+            archivoXml.Close();
+
+            MessageBox.Show("Informacion guardada correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

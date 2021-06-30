@@ -32,7 +32,14 @@ namespace ManejadorDeArchivos
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.iconList = new System.Windows.Forms.ImageList(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tvFile = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,25 +57,15 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox_name = new System.Windows.Forms.TextBox();
-            this.labeleditar = new System.Windows.Forms.Label();
-            this.editar_button = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tvFile = new System.Windows.Forms.TreeView();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -91,12 +88,75 @@ namespace ManejadorDeArchivos
             this.splitContainer1.SplitterDistance = 322;
             this.splitContainer1.TabIndex = 27;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.listView3);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox4.Location = new System.Drawing.Point(0, 274);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(322, 256);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            // 
+            // listView3
+            // 
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listView3.HideSelection = false;
+            this.listView3.Location = new System.Drawing.Point(3, 19);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(316, 234);
+            this.listView3.SmallImageList = this.iconList;
+            this.listView3.TabIndex = 0;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView3_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Nombre";
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Tipo";
+            this.columnHeader2.Width = 100;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Ultima modificación";
+            this.columnHeader3.Width = 150;
+            // 
             // iconList
             // 
             this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
             this.iconList.TransparentColor = System.Drawing.Color.Transparent;
             this.iconList.Images.SetKeyName(0, "Open_36502.png");
             this.iconList.Images.SetKeyName(1, "unknown_filetype_icon_177514.png");
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tvFile);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(322, 530);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            // 
+            // tvFile
+            // 
+            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvFile.ImageIndex = 0;
+            this.tvFile.ImageList = this.iconList;
+            this.tvFile.Location = new System.Drawing.Point(3, 16);
+            this.tvFile.Name = "tvFile";
+            this.tvFile.SelectedImageIndex = 0;
+            this.tvFile.Size = new System.Drawing.Size(316, 511);
+            this.tvFile.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -131,9 +191,6 @@ namespace ManejadorDeArchivos
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.editar_button);
-            this.groupBox1.Controls.Add(this.labeleditar);
-            this.groupBox1.Controls.Add(this.textBox_name);
             this.groupBox1.Controls.Add(this.info_label);
             this.groupBox1.Controls.Add(this.listView2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -154,19 +211,18 @@ namespace ManejadorDeArchivos
             this.info_label.Name = "info_label";
             this.info_label.Size = new System.Drawing.Size(0, 13);
             this.info_label.TabIndex = 1;
-            this.info_label.Click += new System.EventHandler(this.info_label_Click);
             // 
             // listView2
             // 
             this.listView2.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(3, 21);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(636, 76);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -263,6 +319,7 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem.Name = "guardarInformacionToolStripMenuItem";
             this.guardarInformacionToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.guardarInformacionToolStripMenuItem.Text = "Guardar Informacion en XML";
+            this.guardarInformacionToolStripMenuItem.Click += new System.EventHandler(this.guardarInformacionToolStripMenuItem_Click);
             // 
             // informacionDeSesionesAnterioresToolStripMenuItem
             // 
@@ -275,93 +332,7 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
-            // 
-            // textBox_name
-            // 
-            this.textBox_name.Location = new System.Drawing.Point(337, 46);
-            this.textBox_name.Name = "textBox_name";
-            this.textBox_name.Size = new System.Drawing.Size(282, 25);
-            this.textBox_name.TabIndex = 2;
-            // 
-            // labeleditar
-            // 
-            this.labeleditar.AutoSize = true;
-            this.labeleditar.Location = new System.Drawing.Point(334, 24);
-            this.labeleditar.Name = "labeleditar";
-            this.labeleditar.Size = new System.Drawing.Size(109, 18);
-            this.labeleditar.TabIndex = 3;
-            this.labeleditar.Text = "Editar Nombre:";
-            // 
-            // editar_button
-            // 
-            this.editar_button.Location = new System.Drawing.Point(427, 73);
-            this.editar_button.Name = "editar_button";
-            this.editar_button.Size = new System.Drawing.Size(75, 23);
-            this.editar_button.TabIndex = 4;
-            this.editar_button.Text = "Editar";
-            this.editar_button.UseVisualStyleBackColor = true;
-            this.editar_button.Click += new System.EventHandler(this.editar_button_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tvFile);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(316, 261);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.listView3);
-            this.groupBox4.Location = new System.Drawing.Point(3, 270);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(316, 256);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            // 
-            // tvFile
-            // 
-            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvFile.ImageIndex = 0;
-            this.tvFile.ImageList = this.iconList;
-            this.tvFile.Location = new System.Drawing.Point(3, 16);
-            this.tvFile.Name = "tvFile";
-            this.tvFile.SelectedImageIndex = 0;
-            this.tvFile.Size = new System.Drawing.Size(310, 242);
-            this.tvFile.TabIndex = 0;
-            this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
-            // 
-            // listView3
-            // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 19);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(310, 234);
-            this.listView3.SmallImageList = this.iconList;
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
-            this.listView3.SelectedIndexChanged += new System.EventHandler(this.listView3_SelectedIndexChanged);
-            this.listView3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView3_MouseDoubleClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Nombre";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Tipo";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Ultima modificación";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -386,13 +357,13 @@ namespace ManejadorDeArchivos
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,9 +390,6 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.ImageList iconList;
         private System.Windows.Forms.Label info_label;
-        private System.Windows.Forms.Label labeleditar;
-        private System.Windows.Forms.TextBox textBox_name;
-        private System.Windows.Forms.Button editar_button;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TreeView tvFile;
