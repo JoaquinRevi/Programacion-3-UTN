@@ -33,6 +33,12 @@ namespace ManejadorDeArchivos
             cargarDirectoriosyArchivos();
             booleano = false;
         }
+
+        private void loadButtonActionLista()
+        {
+            cargarDirectoriosyArchivosEnLista();
+            booleano = false;
+        }
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             try
@@ -54,6 +60,50 @@ namespace ManejadorDeArchivos
                 MessageBox.Show("Error al ingresar", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 retroceder();
             }
+        }
+
+        private void cargarDirectoriosyArchivosEnLista()
+        {
+            DirectoryInfo listaDeArchivos;
+            string archivo = string.Empty;
+            try
+            {
+                if (booleano)
+                {
+                    archivo = ruta + "//" + rutaDeArchivoSeleccionado;
+                    FileInfo detalles = new FileInfo(archivo);
+                    //info del archivo
+
+                    Process.Start(archivo);
+                }
+                else
+                {
+                    listaDeArchivos = new DirectoryInfo(ruta);
+                    FileInfo[] archivos = listaDeArchivos.GetFiles();
+                    DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
+                    listView3.Items.Clear();
+
+                    foreach (var arch in archivos)
+                    {
+                        string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString() };
+                        //listView3.Items.Add(arch.Name, 1);
+                        //listView3.Items.Add(new ListViewItem(new[] { arch.Name, arch.Extension, arch.CreationTime.ToString()}));
+                        listView3.Items.Add(new ListViewItem(s1,1));
+                    }
+
+                    foreach (var dir in directorios)
+                    {
+                        string[] s1 = { dir.Name, "Carpeta", dir.CreationTime.ToString() };
+                        listView3.Items.Add(new ListViewItem(s1, 0));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
         }
 
         private void cargarDirectoriosyArchivos()
@@ -109,6 +159,7 @@ namespace ManejadorDeArchivos
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
             cargarDirectoriosyArchivos();
+            cargarDirectoriosyArchivosEnLista();
 
             tvFile.Nodes.Add(armarArbol(dir1));
           
@@ -281,6 +332,8 @@ namespace ManejadorDeArchivos
 
         }
 
+
+
         private void info_label_Click(object sender, EventArgs e)
         {
 
@@ -348,7 +401,7 @@ namespace ManejadorDeArchivos
 
         private void listView3_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            cargarDirectoriosyArchivosEnLista();
         }
     }
 }

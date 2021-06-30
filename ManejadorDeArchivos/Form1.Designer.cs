@@ -339,11 +339,11 @@ namespace ManejadorDeArchivos
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 16);
+            this.listView3.Location = new System.Drawing.Point(3, 19);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(310, 237);
+            this.listView3.Size = new System.Drawing.Size(310, 234);
             this.listView3.SmallImageList = this.iconList;
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
