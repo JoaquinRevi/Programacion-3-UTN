@@ -37,11 +37,11 @@ namespace ManejadorDeArchivos
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listView3 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Archivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.info_label = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
@@ -58,8 +58,11 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Extensión = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FechadeCreacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Tamaño = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DirectorioPrincipal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rutacompleta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,9 +70,9 @@ namespace ManejadorDeArchivos
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -141,9 +144,12 @@ namespace ManejadorDeArchivos
             // 
             this.listView3.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
+            this.Archivo,
+            this.Extensión,
+            this.FechadeCreacion,
+            this.Tamaño,
+            this.DirectorioPrincipal,
+            this.Rutacompleta});
             this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(3, 16);
@@ -154,20 +160,10 @@ namespace ManejadorDeArchivos
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // Archivo
             // 
-            this.columnHeader1.Text = "Nombre";
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Tipo";
-            this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Ultima modificación";
-            this.columnHeader3.Width = 150;
+            this.Archivo.Text = "Archivo";
+            this.Archivo.Width = 150;
             // 
             // groupBox2
             // 
@@ -199,6 +195,20 @@ namespace ManejadorDeArchivos
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renombrarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            // 
+            // renombrarToolStripMenuItem
+            // 
+            this.renombrarToolStripMenuItem.Name = "renombrarToolStripMenuItem";
+            this.renombrarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.renombrarToolStripMenuItem.Text = "Renombrar";
+            this.renombrarToolStripMenuItem.Click += new System.EventHandler(this.renombrarToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -354,19 +364,29 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
+            // Extensión
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renombrarToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            this.Extensión.Text = "Extensión";
             // 
-            // renombrarToolStripMenuItem
+            // FechadeCreacion
             // 
-            this.renombrarToolStripMenuItem.Name = "renombrarToolStripMenuItem";
-            this.renombrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.renombrarToolStripMenuItem.Text = "Renombrar";
-            this.renombrarToolStripMenuItem.Click += new System.EventHandler(this.renombrarToolStripMenuItem_Click);
+            this.FechadeCreacion.Text = "Fecha de Creación";
+            this.FechadeCreacion.Width = 100;
+            // 
+            // Tamaño
+            // 
+            this.Tamaño.Text = "Tamaño";
+            this.Tamaño.Width = 100;
+            // 
+            // DirectorioPrincipal
+            // 
+            this.DirectorioPrincipal.Text = "Dir P";
+            this.DirectorioPrincipal.Width = 40;
+            // 
+            // Rutacompleta
+            // 
+            this.Rutacompleta.Text = "Ruta completa";
+            this.Rutacompleta.Width = 200;
             // 
             // Form1
             // 
@@ -394,11 +414,11 @@ namespace ManejadorDeArchivos
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,12 +449,15 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TreeView tvFile;
         private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader Archivo;
         private System.Windows.Forms.ToolStripMenuItem elegirDirectorioToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem renombrarToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader Extensión;
+        private System.Windows.Forms.ColumnHeader FechadeCreacion;
+        private System.Windows.Forms.ColumnHeader Tamaño;
+        private System.Windows.Forms.ColumnHeader DirectorioPrincipal;
+        private System.Windows.Forms.ColumnHeader Rutacompleta;
     }
 }
 

@@ -88,15 +88,16 @@ namespace ManejadorDeArchivos
 
                     foreach (var arch in archivos)
                     {
-                        string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString() };
+                        //arch.Length arch.Directory arch.DirectoryName
+                        string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString()+" bytes", arch.Directory.ToString(), arch.DirectoryName.ToString()};
                         //listView3.Items.Add(arch.Name, 1);
                         //listView3.Items.Add(new ListViewItem(new[] { arch.Name, arch.Extension, arch.CreationTime.ToString()}));
                         listView3.Items.Add(new ListViewItem(s1,1));
                     }
-
+                    int cont = 0;
                     foreach (var dir in directorios)
                     {
-                        string[] s1 = { dir.Name, "Carpeta", dir.CreationTime.ToString() };
+                        string[] s1 = { dir.Name, dir.Extension, dir.CreationTime.ToString(), "", dir.FullName, dir.FullName};
                         listView3.Items.Add(new ListViewItem(s1, 0));
                     }
                 }
@@ -441,8 +442,8 @@ namespace ManejadorDeArchivos
             {
                 Form2 dialog = new Form2();
                 dialog.ShowDialog();
-                f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre));
-
+                f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre+f.Extension));
+               
 
 
             }
