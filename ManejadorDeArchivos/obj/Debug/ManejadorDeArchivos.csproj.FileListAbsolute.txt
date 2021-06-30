@@ -29,3 +29,4 @@ C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\Ma
 C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.exe
 C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.pdb
 D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form2.resources
+C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form2.resources

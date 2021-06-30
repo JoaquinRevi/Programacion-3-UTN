@@ -21,7 +21,6 @@ namespace ManejadorDeArchivos
         private string rutaDeArchivoSeleccionado = string.Empty;
         DirectoryInfo dir1;
         List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();
-        DirectoryInfo[] cambiarNombreDirectorios;
         FileInfo[] cambiarNombreArchivos;
 
         public Form1()
@@ -130,7 +129,6 @@ namespace ManejadorDeArchivos
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
                     cambiarNombreArchivos = archivos;
-                    cambiarNombreDirectorios = directorios;
                     listView1.Items.Clear();
 
                     foreach (var arch in archivos)
@@ -163,8 +161,6 @@ namespace ManejadorDeArchivos
             dir1 = new DirectoryInfo(ruta);
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
-            cargarDirectoriosyArchivos();
-            cargarDirectoriosyArchivosEnLista();
 
             //tvFile.Nodes.Add(armarArbol(dir1));
           
@@ -332,44 +328,51 @@ namespace ManejadorDeArchivos
         private void guardarInformacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XmlWriter archivoXml = XmlWriter.Create(@"C:\Users\Reviriego\Desktop\archivoxml.xml");
-            DirectoryInfo listaDeArchivos = new DirectoryInfo(ruta);
-            DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
-            FileInfo[] archivos = listaDeArchivos.GetFiles();
             archivoXml.WriteStartDocument();
-
             archivoXml.WriteStartElement("Ruta");
-            archivoXml.WriteStartElement("Carpetas");
-            foreach (var dir in directorios)
+            foreach (var dirarb in directoriosArbol)
             {
-                archivoXml.WriteStartElement("Nombre");
-                archivoXml.WriteString(dir.Name + "");
-                archivoXml.WriteEndElement();
-                archivoXml.WriteStartElement("Ult-Modificacion");
-                archivoXml.WriteString(dir.LastAccessTime + "");
-                archivoXml.WriteEndElement();
-                archivoXml.WriteStartElement("Creacion");
-                archivoXml.WriteString(dir.CreationTime + "");
-                archivoXml.WriteEndElement();
-            }
-            archivoXml.WriteEndElement();
 
-            archivoXml.WriteStartElement("Archivos");
-            foreach (var arch in archivos)
-            {
-                archivoXml.WriteStartElement("Nombre");
-                archivoXml.WriteString(arch.Name + "");
+                archivoXml.WriteStartElement(@dirarb.Name);
+                archivoXml.WriteStartElement("Carpetas");
+                foreach (var dir in dirarb.GetDirectories())
+                {
+                    archivoXml.WriteStartElement("Nombre");
+                    archivoXml.WriteString(dir.Name + "");
+                    archivoXml.WriteEndElement();
+                    archivoXml.WriteStartElement("Ult-Modificacion");
+                    archivoXml.WriteString(dir.LastAccessTime + "");
+                    archivoXml.WriteEndElement();
+                    archivoXml.WriteStartElement("Creacion");
+                    archivoXml.WriteString(dir.CreationTime + "");
+                    archivoXml.WriteEndElement();
+
+                }
                 archivoXml.WriteEndElement();
-                archivoXml.WriteStartElement("Tamaño");
-                archivoXml.WriteString(arch.Length + "");
+                archivoXml.WriteStartElement("Archivos");
+                foreach (var arch in dirarb.GetFiles())
+                {
+                    archivoXml.WriteStartElement("Nombre");
+                    archivoXml.WriteString(arch.Name + "");
+                    archivoXml.WriteEndElement();
+                    archivoXml.WriteStartElement("Tamaño");
+                    archivoXml.WriteString(arch.Length + "");
+                    archivoXml.WriteEndElement();
+                    archivoXml.WriteStartElement("Creacion");
+                    archivoXml.WriteString(arch.CreationTime + "");
+                    archivoXml.WriteEndElement();
+                }
+
+
                 archivoXml.WriteEndElement();
-                archivoXml.WriteStartElement("Creacion");
-                archivoXml.WriteString(arch.CreationTime + "");
                 archivoXml.WriteEndElement();
+
             }
+
             archivoXml.WriteEndDocument();
             archivoXml.Close();
 
-            MessageBox.Show("Informacion guardada correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Archivo guardado correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -439,11 +442,17 @@ namespace ManejadorDeArchivos
                 Form2 dialog = new Form2();
                 dialog.ShowDialog();
                 f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre));
+
+
+
             }
             catch (Exception ez)
             {
                
             }
+            retroceder();
+            loadButtonAction();
+            loadButtonActionLista();
         }
     }
 }
