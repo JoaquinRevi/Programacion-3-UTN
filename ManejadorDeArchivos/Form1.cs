@@ -20,7 +20,9 @@ namespace ManejadorDeArchivos
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
         DirectoryInfo dir1;
-        List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();  
+        List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();
+        DirectoryInfo[] cambiarNombreDirectorios;
+        FileInfo[] cambiarNombreArchivos;
 
         public Form1()
         {
@@ -127,6 +129,8 @@ namespace ManejadorDeArchivos
                     listaDeArchivos = new DirectoryInfo(ruta);
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
+                    cambiarNombreArchivos = archivos;
+                    cambiarNombreDirectorios = directorios;
                     listView1.Items.Clear();
 
                     foreach (var arch in archivos)
@@ -419,6 +423,27 @@ namespace ManejadorDeArchivos
                 }
             }
             
+        }
+
+        private void renombrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ////cambiar nombre de archivo
+            //FileInfo f = new FileInfo(listView2.Columns);
+            //foreach (var arch in cambiarNombreArchivos)
+            //{
+            //    if (arch.Name == listView3.SelectedItems.)
+            //}
+            FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
+            try
+            {
+                Form2 dialog = new Form2();
+                dialog.ShowDialog();
+                f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre));
+            }
+            catch (Exception ez)
+            {
+               
+            }
         }
     }
 }

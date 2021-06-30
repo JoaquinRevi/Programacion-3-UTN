@@ -54,10 +54,12 @@ namespace ManejadorDeArchivos
             this.btnAtras = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elegirDirectorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.elegirDirectorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +69,7 @@ namespace ManejadorDeArchivos
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -182,6 +185,7 @@ namespace ManejadorDeArchivos
             // listView1
             // 
             this.listView1.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
@@ -323,6 +327,13 @@ namespace ManejadorDeArchivos
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             // 
+            // elegirDirectorioToolStripMenuItem
+            // 
+            this.elegirDirectorioToolStripMenuItem.Name = "elegirDirectorioToolStripMenuItem";
+            this.elegirDirectorioToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.elegirDirectorioToolStripMenuItem.Text = "Agregar Directorio";
+            this.elegirDirectorioToolStripMenuItem.Click += new System.EventHandler(this.elegirDirectorioToolStripMenuItem_Click);
+            // 
             // guardarInformacionToolStripMenuItem
             // 
             this.guardarInformacionToolStripMenuItem.Name = "guardarInformacionToolStripMenuItem";
@@ -336,19 +347,26 @@ namespace ManejadorDeArchivos
             this.informacionDeSesionesAnterioresToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.informacionDeSesionesAnterioresToolStripMenuItem.Text = "Informacion de Sesiones Anteriores";
             // 
-            // elegirDirectorioToolStripMenuItem
-            // 
-            this.elegirDirectorioToolStripMenuItem.Name = "elegirDirectorioToolStripMenuItem";
-            this.elegirDirectorioToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.elegirDirectorioToolStripMenuItem.Text = "Agregar Directorio";
-            this.elegirDirectorioToolStripMenuItem.Click += new System.EventHandler(this.elegirDirectorioToolStripMenuItem_Click);
-            // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renombrarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            // 
+            // renombrarToolStripMenuItem
+            // 
+            this.renombrarToolStripMenuItem.Name = "renombrarToolStripMenuItem";
+            this.renombrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renombrarToolStripMenuItem.Text = "Renombrar";
+            this.renombrarToolStripMenuItem.Click += new System.EventHandler(this.renombrarToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -380,6 +398,7 @@ namespace ManejadorDeArchivos
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,6 +433,8 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripMenuItem elegirDirectorioToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem renombrarToolStripMenuItem;
     }
 }
 
