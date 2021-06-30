@@ -38,11 +38,18 @@ namespace ManejadorDeArchivos
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listView3 = new System.Windows.Forms.ListView();
             this.Archivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Extensión = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FechadeCreacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Tamaño = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DirectorioPrincipal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Rutacompleta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label_texto_descripcion = new System.Windows.Forms.Label();
+            this.label_descripcion = new System.Windows.Forms.Label();
             this.info_label = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
@@ -58,11 +65,7 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Extensión = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FechadeCreacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Tamaño = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DirectorioPrincipal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Rutacompleta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Button_descripcion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -165,6 +168,30 @@ namespace ManejadorDeArchivos
             this.Archivo.Text = "Archivo";
             this.Archivo.Width = 150;
             // 
+            // Extensión
+            // 
+            this.Extensión.Text = "Extensión";
+            // 
+            // FechadeCreacion
+            // 
+            this.FechadeCreacion.Text = "Fecha de Creación";
+            this.FechadeCreacion.Width = 100;
+            // 
+            // Tamaño
+            // 
+            this.Tamaño.Text = "Tamaño";
+            this.Tamaño.Width = 100;
+            // 
+            // DirectorioPrincipal
+            // 
+            this.DirectorioPrincipal.Text = "Dir P";
+            this.DirectorioPrincipal.Width = 40;
+            // 
+            // Rutacompleta
+            // 
+            this.Rutacompleta.Text = "Ruta completa";
+            this.Rutacompleta.Width = 200;
+            // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
@@ -213,6 +240,9 @@ namespace ManejadorDeArchivos
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.Button_descripcion);
+            this.groupBox1.Controls.Add(this.label_texto_descripcion);
+            this.groupBox1.Controls.Add(this.label_descripcion);
             this.groupBox1.Controls.Add(this.info_label);
             this.groupBox1.Controls.Add(this.listView2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -223,6 +253,27 @@ namespace ManejadorDeArchivos
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
+            // 
+            // label_texto_descripcion
+            // 
+            this.label_texto_descripcion.AutoSize = true;
+            this.label_texto_descripcion.BackColor = System.Drawing.Color.Bisque;
+            this.label_texto_descripcion.Location = new System.Drawing.Point(15, 56);
+            this.label_texto_descripcion.Name = "label_texto_descripcion";
+            this.label_texto_descripcion.Size = new System.Drawing.Size(46, 18);
+            this.label_texto_descripcion.TabIndex = 3;
+            this.label_texto_descripcion.Text = "label3";
+            // 
+            // label_descripcion
+            // 
+            this.label_descripcion.AutoSize = true;
+            this.label_descripcion.BackColor = System.Drawing.Color.Bisque;
+            this.label_descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_descripcion.Location = new System.Drawing.Point(12, 25);
+            this.label_descripcion.Name = "label_descripcion";
+            this.label_descripcion.Size = new System.Drawing.Size(66, 13);
+            this.label_descripcion.TabIndex = 2;
+            this.label_descripcion.Text = "Descripción:";
             // 
             // info_label
             // 
@@ -364,29 +415,15 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
-            // Extensión
+            // Button_descripcion
             // 
-            this.Extensión.Text = "Extensión";
-            // 
-            // FechadeCreacion
-            // 
-            this.FechadeCreacion.Text = "Fecha de Creación";
-            this.FechadeCreacion.Width = 100;
-            // 
-            // Tamaño
-            // 
-            this.Tamaño.Text = "Tamaño";
-            this.Tamaño.Width = 100;
-            // 
-            // DirectorioPrincipal
-            // 
-            this.DirectorioPrincipal.Text = "Dir P";
-            this.DirectorioPrincipal.Width = 40;
-            // 
-            // Rutacompleta
-            // 
-            this.Rutacompleta.Text = "Ruta completa";
-            this.Rutacompleta.Width = 200;
+            this.Button_descripcion.Location = new System.Drawing.Point(366, 71);
+            this.Button_descripcion.Name = "Button_descripcion";
+            this.Button_descripcion.Size = new System.Drawing.Size(75, 23);
+            this.Button_descripcion.TabIndex = 4;
+            this.Button_descripcion.Text = "Editar";
+            this.Button_descripcion.UseVisualStyleBackColor = true;
+            this.Button_descripcion.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -458,6 +495,9 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ColumnHeader Tamaño;
         private System.Windows.Forms.ColumnHeader DirectorioPrincipal;
         private System.Windows.Forms.ColumnHeader Rutacompleta;
+        private System.Windows.Forms.Label label_descripcion;
+        private System.Windows.Forms.Label label_texto_descripcion;
+        private System.Windows.Forms.Button Button_descripcion;
     }
 }
 

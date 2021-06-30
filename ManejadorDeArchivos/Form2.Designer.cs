@@ -56,9 +56,9 @@ namespace ManejadorDeArchivos
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Nuevo nombre:";
+            this.label1.Text = "Escriba aquí:";
             // 
             // Form2
             // 
