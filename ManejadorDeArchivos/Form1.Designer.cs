@@ -313,8 +313,8 @@ namespace ManejadorDeArchivos
             this.opcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.guardarInformacionToolStripMenuItem,
             this.informacionDeSesionesAnterioresToolStripMenuItem,
-            this.cerrarToolStripMenuItem,
-            this.elegirDirectorioToolStripMenuItem});
+            this.elegirDirectorioToolStripMenuItem,
+            this.cerrarToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.opcionesToolStripMenuItem.Text = "Opciones";
