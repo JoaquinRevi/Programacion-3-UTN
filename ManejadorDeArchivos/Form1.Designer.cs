@@ -56,8 +56,8 @@ namespace ManejadorDeArchivos
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elegirDirectorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,19 +86,20 @@ namespace ManejadorDeArchivos
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(968, 530);
-            this.splitContainer1.SplitterDistance = 322;
+            this.splitContainer1.SplitterDistance = 477;
             this.splitContainer1.TabIndex = 27;
             // 
             // groupBox4
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.groupBox4.Controls.Add(this.listView3);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox4.Location = new System.Drawing.Point(0, 274);
+            this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox4.Controls.Add(this.tvFile);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(322, 256);
+            this.groupBox4.Size = new System.Drawing.Size(477, 343);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "g4";
             // 
             // listView3
             // 
@@ -107,11 +108,11 @@ namespace ManejadorDeArchivos
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 19);
+            this.listView3.Location = new System.Drawing.Point(3, 16);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(316, 234);
+            this.listView3.Size = new System.Drawing.Size(471, 168);
             this.listView3.SmallImageList = this.iconList;
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -142,13 +143,14 @@ namespace ManejadorDeArchivos
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.tvFile);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Controls.Add(this.listView3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(0, 343);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(322, 277);
+            this.groupBox3.Size = new System.Drawing.Size(477, 187);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "g3";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // tvFile
@@ -160,7 +162,7 @@ namespace ManejadorDeArchivos
             this.tvFile.Location = new System.Drawing.Point(3, 16);
             this.tvFile.Name = "tvFile";
             this.tvFile.SelectedImageIndex = 0;
-            this.tvFile.Size = new System.Drawing.Size(316, 258);
+            this.tvFile.Size = new System.Drawing.Size(471, 324);
             this.tvFile.TabIndex = 0;
             this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
             this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
@@ -174,7 +176,7 @@ namespace ManejadorDeArchivos
             this.groupBox2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(642, 430);
+            this.groupBox2.Size = new System.Drawing.Size(487, 430);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Directorios";
@@ -188,7 +190,7 @@ namespace ManejadorDeArchivos
             this.listView1.LargeImageList = this.iconList;
             this.listView1.Location = new System.Drawing.Point(3, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(636, 406);
+            this.listView1.Size = new System.Drawing.Size(481, 406);
             this.listView1.SmallImageList = this.iconList;
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -205,7 +207,7 @@ namespace ManejadorDeArchivos
             this.groupBox1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 430);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(642, 100);
+            this.groupBox1.Size = new System.Drawing.Size(487, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
@@ -228,7 +230,7 @@ namespace ManejadorDeArchivos
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(3, 21);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(636, 76);
+            this.listView2.Size = new System.Drawing.Size(481, 76);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
@@ -336,19 +338,19 @@ namespace ManejadorDeArchivos
             this.informacionDeSesionesAnterioresToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.informacionDeSesionesAnterioresToolStripMenuItem.Text = "Informacion de Sesiones Anteriores";
             // 
-            // cerrarToolStripMenuItem
-            // 
-            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.cerrarToolStripMenuItem.Text = "Cerrar";
-            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
-            // 
             // elegirDirectorioToolStripMenuItem
             // 
             this.elegirDirectorioToolStripMenuItem.Name = "elegirDirectorioToolStripMenuItem";
             this.elegirDirectorioToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.elegirDirectorioToolStripMenuItem.Text = "Elegir Directorio";
             this.elegirDirectorioToolStripMenuItem.Click += new System.EventHandler(this.elegirDirectorioToolStripMenuItem_Click);
+            // 
+            // cerrarToolStripMenuItem
+            // 
+            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // Form1
             // 

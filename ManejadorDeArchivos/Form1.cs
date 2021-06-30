@@ -413,6 +413,7 @@ namespace ManejadorDeArchivos
             {
                 if (dir.FullName.Contains(e.Node.Text))
                 {
+
                     MessageBox.Show(dir.FullName);
                 }
             }
