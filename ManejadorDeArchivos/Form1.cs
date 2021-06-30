@@ -411,7 +411,7 @@ namespace ManejadorDeArchivos
         {
             foreach(DirectoryInfo dir in directoriosArbol) 
             {
-                if (dir.FullName.Contains(e.Node.Text))
+                if(dir.FullName.Contains(e.Node.Text))
                 {
                     tboxRuta.Text = dir.FullName;
                     loadButtonAction();
