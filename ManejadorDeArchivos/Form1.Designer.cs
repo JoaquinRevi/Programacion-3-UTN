@@ -33,13 +33,13 @@ namespace ManejadorDeArchivos
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tvFile = new System.Windows.Forms.TreeView();
+            this.iconList = new System.Windows.Forms.ImageList(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.iconList = new System.Windows.Forms.ImageList(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tvFile = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -99,7 +99,40 @@ namespace ManejadorDeArchivos
             this.groupBox4.Size = new System.Drawing.Size(477, 343);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "g4";
+            // 
+            // tvFile
+            // 
+            this.tvFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvFile.ImageIndex = 0;
+            this.tvFile.ImageList = this.iconList;
+            this.tvFile.Location = new System.Drawing.Point(3, 16);
+            this.tvFile.Name = "tvFile";
+            this.tvFile.SelectedImageIndex = 0;
+            this.tvFile.Size = new System.Drawing.Size(471, 324);
+            this.tvFile.TabIndex = 0;
+            this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
+            this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
+            this.tvFile.Click += new System.EventHandler(this.tvFile_Click);
+            // 
+            // iconList
+            // 
+            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
+            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
+            this.iconList.Images.SetKeyName(0, "Open_36502.png");
+            this.iconList.Images.SetKeyName(1, "unknown_filetype_icon_177514.png");
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.listView3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(0, 343);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(477, 187);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // listView3
             // 
@@ -132,41 +165,6 @@ namespace ManejadorDeArchivos
             // 
             this.columnHeader3.Text = "Ultima modificación";
             this.columnHeader3.Width = 150;
-            // 
-            // iconList
-            // 
-            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
-            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
-            this.iconList.Images.SetKeyName(0, "Open_36502.png");
-            this.iconList.Images.SetKeyName(1, "unknown_filetype_icon_177514.png");
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.listView3);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(0, 343);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(477, 187);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "g3";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // tvFile
-            // 
-            this.tvFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tvFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvFile.ImageIndex = 0;
-            this.tvFile.ImageList = this.iconList;
-            this.tvFile.Location = new System.Drawing.Point(3, 16);
-            this.tvFile.Name = "tvFile";
-            this.tvFile.SelectedImageIndex = 0;
-            this.tvFile.Size = new System.Drawing.Size(471, 324);
-            this.tvFile.TabIndex = 0;
-            this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
-            this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
-            this.tvFile.Click += new System.EventHandler(this.tvFile_Click);
             // 
             // groupBox2
             // 
@@ -317,9 +315,9 @@ namespace ManejadorDeArchivos
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.elegirDirectorioToolStripMenuItem,
             this.guardarInformacionToolStripMenuItem,
             this.informacionDeSesionesAnterioresToolStripMenuItem,
-            this.elegirDirectorioToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
@@ -342,7 +340,7 @@ namespace ManejadorDeArchivos
             // 
             this.elegirDirectorioToolStripMenuItem.Name = "elegirDirectorioToolStripMenuItem";
             this.elegirDirectorioToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.elegirDirectorioToolStripMenuItem.Text = "Elegir Directorio";
+            this.elegirDirectorioToolStripMenuItem.Text = "Agregar Directorio";
             this.elegirDirectorioToolStripMenuItem.Click += new System.EventHandler(this.elegirDirectorioToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
