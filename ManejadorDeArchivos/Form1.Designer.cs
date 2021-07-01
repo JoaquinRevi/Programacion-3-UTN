@@ -48,6 +48,7 @@ namespace ManejadorDeArchivos
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Button_descripcion = new System.Windows.Forms.Button();
             this.label_texto_descripcion = new System.Windows.Forms.Label();
             this.label_descripcion = new System.Windows.Forms.Label();
             this.info_label = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Button_descripcion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -254,6 +254,16 @@ namespace ManejadorDeArchivos
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
             // 
+            // Button_descripcion
+            // 
+            this.Button_descripcion.Location = new System.Drawing.Point(366, 71);
+            this.Button_descripcion.Name = "Button_descripcion";
+            this.Button_descripcion.Size = new System.Drawing.Size(75, 23);
+            this.Button_descripcion.TabIndex = 4;
+            this.Button_descripcion.Text = "Editar";
+            this.Button_descripcion.UseVisualStyleBackColor = true;
+            this.Button_descripcion.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label_texto_descripcion
             // 
             this.label_texto_descripcion.AutoSize = true;
@@ -407,6 +417,7 @@ namespace ManejadorDeArchivos
             this.informacionDeSesionesAnterioresToolStripMenuItem.Name = "informacionDeSesionesAnterioresToolStripMenuItem";
             this.informacionDeSesionesAnterioresToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.informacionDeSesionesAnterioresToolStripMenuItem.Text = "Informacion de Sesiones Anteriores";
+            this.informacionDeSesionesAnterioresToolStripMenuItem.Click += new System.EventHandler(this.informacionDeSesionesAnterioresToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
@@ -414,16 +425,6 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
-            // 
-            // Button_descripcion
-            // 
-            this.Button_descripcion.Location = new System.Drawing.Point(366, 71);
-            this.Button_descripcion.Name = "Button_descripcion";
-            this.Button_descripcion.Size = new System.Drawing.Size(75, 23);
-            this.Button_descripcion.TabIndex = 4;
-            this.Button_descripcion.Text = "Editar";
-            this.Button_descripcion.UseVisualStyleBackColor = true;
-            this.Button_descripcion.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

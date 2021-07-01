@@ -502,8 +502,13 @@ namespace ManejadorDeArchivos
             
         }
 
-        //private void loadDescripcion() 
-        //{ }
+        private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"C:\Users\Reviriego\Desktop\archivoxml.xml");
+
+        }
+
+
 
     }
 }
