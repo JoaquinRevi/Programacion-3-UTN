@@ -16,8 +16,8 @@ namespace ManejadorDeArchivos
 {
     public partial class Form1 : Form
     {
-        static string ruta = @"C:/";
-        private string ruta2 = @"D:/";
+        static string ruta = @"C:\";
+        private string ruta2 = @"D:\";
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
         List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();
@@ -29,19 +29,32 @@ namespace ManejadorDeArchivos
             info_label.Text = "Bienvenido!";
             
         }
-        private void actualizar()
+
+        private void Form1_Load(object sender, EventArgs e)
         {
-            removerbarra();
-            ruta = tboxRuta.Text;
-            cargarDirectoriosyArchivos();
-            booleano = false;
+            DirectoryInfo dir1 = new DirectoryInfo(ruta);
+            DirectoryInfo dir2 = new DirectoryInfo(ruta2);
+            tboxRuta.Text = ruta;
+
         }
 
-        private void actualizarLista()
+
+        private void elegirDirectorioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cargarDirectoriosyArchivosEnLista();
-            booleano = false;
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select your path." })
+            {
+
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    string path = fbd.SelectedPath;
+                    DirectoryInfo di = new DirectoryInfo(path);
+                    directoriosArbol.Add(di);
+                    tvFile.Nodes.Add(armarArbol(di));
+                }
+
+            }
         }
+
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             try
@@ -63,6 +76,82 @@ namespace ManejadorDeArchivos
                 MessageBox.Show("Error al ingresar", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 retroceder();
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            info_label.Visible = true;
+            FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
+            try
+            {
+                info_label.Text = "archivo: " + f.Name + "\ntamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
+
+            }
+            catch (Exception ez)
+            {
+                info_label.Text = "";
+            }
+
+        }
+
+        private void removerbarra()
+        {
+            string rutaanterior = tboxRuta.Text;
+            if (rutaanterior.LastIndexOf("\\") == rutaanterior.Length - 1)
+            {
+                tboxRuta.Text = rutaanterior.Substring(0, rutaanterior.Length - 1);
+            }
+        }
+
+        private void retroceder()
+        {
+            try
+            {
+
+                string rutaAnterior = tboxRuta.Text;
+                rutaAnterior = rutaAnterior.Substring(0, rutaAnterior.LastIndexOf("\\"));
+                booleano = false;
+                tboxRuta.Text = rutaAnterior;
+                removerbarra();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void actualizar()
+        {
+            ruta = tboxRuta.Text;
+            cargarDirectoriosyArchivos();
+            booleano = false;
+        }
+
+        private void actualizarLista()
+        {
+            cargarDirectoriosyArchivosEnLista();
+            booleano = false;
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            retroceder();
+            actualizar();
+            actualizarLista();
+        }
+
+        private void btnAdelante_Click(object sender, EventArgs e)
+        {
+            actualizar();
+            actualizarLista();
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            actualizar();
+            actualizarLista();
         }
 
         private void cargarDirectoriosyArchivosEnLista()
@@ -142,19 +231,8 @@ namespace ManejadorDeArchivos
           
         }
 
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            retroceder();
-            actualizar();
-            actualizarLista();        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DirectoryInfo dir1 = new DirectoryInfo(ruta);
-            DirectoryInfo dir2 = new DirectoryInfo(ruta2);
-            tboxRuta.Text = ruta;
-           
-        }
+
 
         private TreeNode armarArbol(DirectoryInfo listaDeArchivos)
         {
@@ -201,63 +279,33 @@ namespace ManejadorDeArchivos
             return treenode;
         }
 
-        private void btnAdelante_Click(object sender, EventArgs e)
+        private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            actualizar();
-        }
+            info_label.Visible = false;
 
-        private void removerbarra()
-        {
-            string rutaanterior = tboxRuta.Text;
-            if (rutaanterior.LastIndexOf("\\") == rutaanterior.Length - 1)
-            {
-                tboxRuta.Text = rutaanterior.Substring(0, rutaanterior.Length - 1);
-            }
-        }
-
-        private void retroceder()
-        {
-            try
+            foreach (DirectoryInfo dir in directoriosArbol)
             {
 
-                string rutaAnterior = tboxRuta.Text;
-                rutaAnterior = rutaAnterior.Substring(0, rutaAnterior.LastIndexOf("\\"));
-                booleano = false;
-                tboxRuta.Text = rutaAnterior;
-                removerbarra();
-
+                if (dir.FullName.Contains(e.Node.Text))
+                {
+                    tboxRuta.Text = dir.FullName;
+                    actualizar();
+                    actualizarLista();
+                }
+     
             }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            
-            actualizar();
-            actualizarLista();
-
 
         }
 
+
+        //Accion de Busqueda
         private void button1_Click(object sender, EventArgs e)
         {
             DirectoryInfo listaDeArchivos;
             string archivo = string.Empty;
             try
             {
-                if (booleano)
-                {
-                    archivo = ruta + "//" + rutaDeArchivoSeleccionado;
-                    FileInfo detalles = new FileInfo(archivo);
-                    //info del archivo
 
-                    Process.Start(archivo);
-                }
-                else
-                {
                     listaDeArchivos = new DirectoryInfo(ruta);
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
@@ -278,7 +326,7 @@ namespace ManejadorDeArchivos
                             listView1.Items.Add(dir.Name, 0);
                         }
                     }
-                }
+
             }
             catch (Exception ex)
             {
@@ -286,26 +334,31 @@ namespace ManejadorDeArchivos
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        //Accion de renombrar
+        private void renombrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            info_label.Visible = true;
+
             FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
             try
             {
-                info_label.Text = "archivo: " + f.Name + "\ntamaño: " + f.Length + " bytes\nfecha de modificación: " + f.LastWriteTime + "\nfecha de creación: " + f.CreationTime;
-                
+                Form2 dialog = new Form2();
+                dialog.ShowDialog();
+                f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre + f.Extension));
+
+
+
             }
             catch (Exception ez)
             {
-                info_label.Text = "";
+
             }
-
+            retroceder();
+            actualizar();
+            actualizarLista();
         }
 
-        private void listView3_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            cargarDirectoriosyArchivosEnLista();
-        }
+
+
 
         private void guardarInformacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -356,89 +409,17 @@ namespace ManejadorDeArchivos
 
             MessageBox.Show("Archivo guardado correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+  
+        private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"archivoxml.xml");
+        }
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-       
-        private void elegirDirectorioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select your path." })
-            {
-
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    string path = fbd.SelectedPath;
-                    DirectoryInfo di = new DirectoryInfo(path);
-                    directoriosArbol.Add(di);
-                    tvFile.Nodes.Add(armarArbol(di));
-                }
-                
-            }
-        }
-
-     
-
-        private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            info_label.Visible = false;
-           
-            foreach(DirectoryInfo dir in directoriosArbol) 
-            {
-                if (dir.Name == @"C:\")
-                {
-                    tboxRuta.Text = @"C:/";
-                    actualizar();
-                    actualizarLista();
-
-                }
-                else if (dir.Name == @"D:\")
-                {
-                    tboxRuta.Text = @"D:/";
-                    actualizar();
-                    actualizarLista(); ;
-
-                }
-                else if (dir.FullName.Contains(e.Node.Text))
-                {
-                    tboxRuta.Text = dir.FullName;
-                    actualizar();
-                    actualizarLista();
-                }
-
-            }
-
-            }
-
-        private void renombrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-            FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
-            try
-            {
-                Form2 dialog = new Form2();
-                dialog.ShowDialog();
-                f.MoveTo(Path.Combine(f.Directory.FullName, dialog.NuevoNombre+f.Extension));
-               
-
-
-            }
-            catch (Exception ez)
-            {
-               
-            }
-            retroceder();
-            actualizar();
-            actualizarLista();
-        }
-
-       
-        private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(@"archivoxml.xml");
-        }
 
     }
 }

@@ -317,11 +317,12 @@ namespace ManejadorDeArchivos
             // btnAdelante
             // 
             this.btnAdelante.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.btnAdelante.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdelante.Location = new System.Drawing.Point(144, 1);
             this.btnAdelante.Name = "btnAdelante";
             this.btnAdelante.Size = new System.Drawing.Size(27, 23);
             this.btnAdelante.TabIndex = 21;
-            this.btnAdelante.Text = "❯❯";
+            this.btnAdelante.Text = "⟳";
             this.btnAdelante.UseVisualStyleBackColor = false;
             this.btnAdelante.Click += new System.EventHandler(this.btnAdelante_Click);
             // 
