@@ -103,7 +103,6 @@ namespace ManejadorDeArchivos
 
             }
 
-
         }
 
         private void cargarDirectoriosyArchivos()
@@ -141,7 +140,6 @@ namespace ManejadorDeArchivos
 
             }
           
-
         }
 
         private void btnAtras_Click(object sender, EventArgs e)
@@ -302,11 +300,7 @@ namespace ManejadorDeArchivos
                 info_label.Text = "";
             }
 
-
         }
-
-
-
 
         private void listView3_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -393,13 +387,27 @@ namespace ManejadorDeArchivos
            
             foreach(DirectoryInfo dir in directoriosArbol) 
             {
-                if(dir.FullName.Contains(e.Node.Text))
+                if (dir.Name == @"C:\")
+                {
+                    tboxRuta.Text = @"C:/";
+                    actualizar();
+                    actualizarLista();
+
+                }
+                else if (dir.Name == @"D:\")
+                {
+                    tboxRuta.Text = @"D:/";
+                    actualizar();
+                    actualizarLista(); ;
+
+                }
+                else if (dir.FullName.Contains(e.Node.Text))
                 {
                     tboxRuta.Text = dir.FullName;
                     actualizar();
                     actualizarLista();
                 }
-                
+
             }
 
             }
@@ -427,13 +435,10 @@ namespace ManejadorDeArchivos
         }
 
        
-
         private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(@"archivoxml.xml");
-
         }
 
-        
     }
 }
