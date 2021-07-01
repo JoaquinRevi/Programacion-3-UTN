@@ -90,10 +90,9 @@ namespace ManejadorDeArchivos
 
                     foreach (var arch in archivos)
                     {
-                        //arch.Length arch.Directory arch.DirectoryName
+                        
                         string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString()+" bytes", arch.Directory.ToString(), arch.DirectoryName.ToString()};
-                        //listView3.Items.Add(arch.Name, 1);
-                        //listView3.Items.Add(new ListViewItem(new[] { arch.Name, arch.Extension, arch.CreationTime.ToString()}));
+                        
                         listView3.Items.Add(new ListViewItem(s1,1));
                     }
                     int cont = 0;
@@ -164,11 +163,7 @@ namespace ManejadorDeArchivos
             dir1 = new DirectoryInfo(ruta);
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
-            label_descripcion.Visible = false;
-            label_texto_descripcion.Visible = false;
-            //tvFile.Nodes.Add(armarArbol(dir1));
-          
-            //tvFile.Nodes.Add(armarArbol(dir2));
+           
         }
 
         private TreeNode armarArbol(DirectoryInfo listaDeArchivos)
@@ -198,14 +193,19 @@ namespace ManejadorDeArchivos
 
                     foreach (var arch in archivos)
                     {
-                        treenode.Nodes.Add("", arch.Name,1);
+                        TreeNode t = new TreeNode(arch.Name, 1, 1);
+                        t.Tag = "description";
 
+                        treenode.Nodes.Add(t);
+                        
                         
                     }
 
                     foreach (var d in directorios)
                     {
-                        treenode.Nodes.Add("", d.Name, 0);
+                        TreeNode t = new TreeNode(d.Name, 0, 0);
+                        t.Tag = "description";
+                        treenode.Nodes.Add(t);
                         
                     }
                     return treenode;
@@ -307,6 +307,7 @@ namespace ManejadorDeArchivos
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            info_label.Visible = true;
             FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
             try
             {
@@ -395,7 +396,6 @@ namespace ManejadorDeArchivos
                     string path = fbd.SelectedPath;
                     DirectoryInfo di = new DirectoryInfo(path);
                     directoriosArbol.Add(di);
-                    //TreeNode treenode = new TreeNode(di.Name);
                     tvFile.Nodes.Add(armarArbol(di));
                     
                     Nodo n1 = new Nodo(di.Name, "rrr");
@@ -405,28 +405,12 @@ namespace ManejadorDeArchivos
             }
         }
 
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tvFile_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void tvFile_Click(object sender, EventArgs e)
-        {
-           
-        }
+     
 
         private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             info_label.Visible = false;
-            
-            
-            label_descripcion.Visible = true;
-            label_texto_descripcion.Visible = true;
+           
             foreach(DirectoryInfo dir in directoriosArbol) 
             {
                 if(dir.FullName.Contains(e.Node.Text))
@@ -438,30 +422,11 @@ namespace ManejadorDeArchivos
                 
             }
 
-            //foreach (var dir in directoriosArbol)
-            //{
-            foreach (var str in descripciones)
-            {
-                if (str.Ruta.Contains(e.Node.Text))
-                {
-                    label_texto_descripcion.Text = str.Descripcion;
-                }
-                
-            }
-
-
-
-
             }
 
         private void renombrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ////cambiar nombre de archivo
-            //FileInfo f = new FileInfo(listView2.Columns);
-            //foreach (var arch in cambiarNombreArchivos)
-            //{
-            //    if (arch.Name == listView3.SelectedItems.)
-            //}
+           
             FileInfo f = new FileInfo(ruta + "\\" + rutaDeArchivoSeleccionado);
             try
             {
@@ -481,26 +446,7 @@ namespace ManejadorDeArchivos
             loadButtonActionLista();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-           
-            Form2 dialog = new Form2();
-            dialog.ShowDialog();
-
-            //Buscar cual y cambiar
-            foreach (var dir in directoriosArbol)
-            {
-                foreach (var str in descripciones)
-                {
-                    if (dir.Name == str.Ruta)
-                    {
-                        str.Descripcion = dialog.NuevoNombre;
-                        
-                    }
-                }
-            }
-            
-        }
+       
 
         private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -508,7 +454,6 @@ namespace ManejadorDeArchivos
 
         }
 
-
-
+        
     }
 }

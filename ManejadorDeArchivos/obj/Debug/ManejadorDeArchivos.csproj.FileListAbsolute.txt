@@ -31,3 +31,4 @@ C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\Ma
 D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form2.resources
 C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form2.resources
 C:\Users\Reviriego\Desktop\UTN\Programación 3\Repositorio\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form3.resources
+D:\repos\GitHub\Programacion-3-UTN\ManejadorDeArchivos\obj\Debug\ManejadorDeArchivos.Form3.resources

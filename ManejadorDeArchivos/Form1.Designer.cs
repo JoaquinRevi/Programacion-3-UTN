@@ -48,9 +48,6 @@ namespace ManejadorDeArchivos
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.renombrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Button_descripcion = new System.Windows.Forms.Button();
-            this.label_texto_descripcion = new System.Windows.Forms.Label();
-            this.label_descripcion = new System.Windows.Forms.Label();
             this.info_label = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
@@ -120,9 +117,7 @@ namespace ManejadorDeArchivos
             this.tvFile.SelectedImageIndex = 0;
             this.tvFile.Size = new System.Drawing.Size(471, 324);
             this.tvFile.TabIndex = 0;
-            this.tvFile.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvFile_AfterSelect);
             this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
-            this.tvFile.Click += new System.EventHandler(this.tvFile_Click);
             // 
             // iconList
             // 
@@ -141,7 +136,6 @@ namespace ManejadorDeArchivos
             this.groupBox3.Size = new System.Drawing.Size(477, 187);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // listView3
             // 
@@ -240,9 +234,6 @@ namespace ManejadorDeArchivos
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.Button_descripcion);
-            this.groupBox1.Controls.Add(this.label_texto_descripcion);
-            this.groupBox1.Controls.Add(this.label_descripcion);
             this.groupBox1.Controls.Add(this.info_label);
             this.groupBox1.Controls.Add(this.listView2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -253,37 +244,6 @@ namespace ManejadorDeArchivos
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
-            // 
-            // Button_descripcion
-            // 
-            this.Button_descripcion.Location = new System.Drawing.Point(366, 71);
-            this.Button_descripcion.Name = "Button_descripcion";
-            this.Button_descripcion.Size = new System.Drawing.Size(75, 23);
-            this.Button_descripcion.TabIndex = 4;
-            this.Button_descripcion.Text = "Editar";
-            this.Button_descripcion.UseVisualStyleBackColor = true;
-            this.Button_descripcion.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label_texto_descripcion
-            // 
-            this.label_texto_descripcion.AutoSize = true;
-            this.label_texto_descripcion.BackColor = System.Drawing.Color.Bisque;
-            this.label_texto_descripcion.Location = new System.Drawing.Point(15, 56);
-            this.label_texto_descripcion.Name = "label_texto_descripcion";
-            this.label_texto_descripcion.Size = new System.Drawing.Size(46, 18);
-            this.label_texto_descripcion.TabIndex = 3;
-            this.label_texto_descripcion.Text = "label3";
-            // 
-            // label_descripcion
-            // 
-            this.label_descripcion.AutoSize = true;
-            this.label_descripcion.BackColor = System.Drawing.Color.Bisque;
-            this.label_descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_descripcion.Location = new System.Drawing.Point(12, 25);
-            this.label_descripcion.Name = "label_descripcion";
-            this.label_descripcion.Size = new System.Drawing.Size(66, 13);
-            this.label_descripcion.TabIndex = 2;
-            this.label_descripcion.Text = "Descripción:";
             // 
             // info_label
             // 
@@ -496,9 +456,6 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ColumnHeader Tamaño;
         private System.Windows.Forms.ColumnHeader DirectorioPrincipal;
         private System.Windows.Forms.ColumnHeader Rutacompleta;
-        private System.Windows.Forms.Label label_descripcion;
-        private System.Windows.Forms.Label label_texto_descripcion;
-        private System.Windows.Forms.Button Button_descripcion;
     }
 }
 
