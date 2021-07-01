@@ -20,10 +20,8 @@ namespace ManejadorDeArchivos
         private string ruta2 = @"D:/";
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
-        DirectoryInfo dir1;
         List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();
-        List<Nodo> descripciones = new List<Nodo>();
-        FileInfo[] cambiarNombreArchivos;
+
 
         public Form1()
         {
@@ -31,7 +29,7 @@ namespace ManejadorDeArchivos
             info_label.Text = "Bienvenido!";
             
         }
-        private void loadButtonAction()
+        private void actualizar()
         {
             removerbarra();
             ruta = tboxRuta.Text;
@@ -39,7 +37,7 @@ namespace ManejadorDeArchivos
             booleano = false;
         }
 
-        private void loadButtonActionLista()
+        private void actualizarLista()
         {
             cargarDirectoriosyArchivosEnLista();
             booleano = false;
@@ -50,7 +48,7 @@ namespace ManejadorDeArchivos
             {
                 rutaDeArchivoSeleccionado = e.Item.Text;
                 FileAttributes atributos = File.GetAttributes(ruta + "\\" + rutaDeArchivoSeleccionado);
-                if ((atributos & FileAttributes.Directory) == FileAttributes.Directory) // & es un operador a nivel de bit ni idea jasj
+                if ((atributos & FileAttributes.Directory) == FileAttributes.Directory)
                 {
                     booleano = false;
                     tboxRuta.Text = ruta + "\\" + rutaDeArchivoSeleccionado;
@@ -76,9 +74,6 @@ namespace ManejadorDeArchivos
                 if (booleano)
                 {
                     archivo = ruta + "//" + rutaDeArchivoSeleccionado;
-                    FileInfo detalles = new FileInfo(archivo);
-                    //info del archivo
-
                     Process.Start(archivo);
                 }
                 else
@@ -114,15 +109,12 @@ namespace ManejadorDeArchivos
         private void cargarDirectoriosyArchivos()
         {
             DirectoryInfo listaDeArchivos;
-            string archivo = string.Empty;
+            string archivo;
             try
             {
                 if (booleano)
                 {
                     archivo = ruta + "//" + rutaDeArchivoSeleccionado;
-                    FileInfo detalles = new FileInfo(archivo);
-                    //info del archivo
-
                     Process.Start(archivo);
                 }
                 else
@@ -130,7 +122,7 @@ namespace ManejadorDeArchivos
                     listaDeArchivos = new DirectoryInfo(ruta);
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
-                    cambiarNombreArchivos = archivos;
+                    FileInfo[] cambiarNombreArchivos = archivos;
                     listView1.Items.Clear();
 
                     foreach (var arch in archivos)
@@ -155,12 +147,12 @@ namespace ManejadorDeArchivos
         private void btnAtras_Click(object sender, EventArgs e)
         {
             retroceder();
-            loadButtonAction();
-            loadButtonActionLista();        }
+            actualizar();
+            actualizarLista();        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dir1 = new DirectoryInfo(ruta);
+            DirectoryInfo dir1 = new DirectoryInfo(ruta);
             DirectoryInfo dir2 = new DirectoryInfo(ruta2);
             tboxRuta.Text = ruta;
            
@@ -169,16 +161,12 @@ namespace ManejadorDeArchivos
         private TreeNode armarArbol(DirectoryInfo listaDeArchivos)
         {
             TreeNode treenode = new TreeNode();
-            //DirectoryInfo listaDeArchivos;
-            string archivo = string.Empty;
+            string archivo;
             try
             {
                 if (booleano)
                 {
                     archivo = ruta + "//" + rutaDeArchivoSeleccionado;
-                    FileInfo detalles = new FileInfo(archivo);
-                    //info del archivo
-
                     Process.Start(archivo);
                 }
                 else
@@ -194,19 +182,14 @@ namespace ManejadorDeArchivos
                     foreach (var arch in archivos)
                     {
                         TreeNode t = new TreeNode(arch.Name, 1, 1);
-                        t.Tag = "description";
-
-                        treenode.Nodes.Add(t);
-                        
-                        
+                        treenode.Nodes.Add(t);  
                     }
 
                     foreach (var d in directorios)
                     {
                         TreeNode t = new TreeNode(d.Name, 0, 0);
-                        t.Tag = "description";
                         treenode.Nodes.Add(t);
-                        
+     
                     }
                     return treenode;
                 }
@@ -222,7 +205,7 @@ namespace ManejadorDeArchivos
 
         private void btnAdelante_Click(object sender, EventArgs e)
         {
-            loadButtonAction();
+            actualizar();
         }
 
         private void removerbarra()
@@ -238,7 +221,7 @@ namespace ManejadorDeArchivos
         {
             try
             {
-                removerbarra();
+
                 string rutaAnterior = tboxRuta.Text;
                 rutaAnterior = rutaAnterior.Substring(0, rutaAnterior.LastIndexOf("\\"));
                 booleano = false;
@@ -255,8 +238,8 @@ namespace ManejadorDeArchivos
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             
-            loadButtonAction();
-            loadButtonActionLista();
+            actualizar();
+            actualizarLista();
 
 
         }
@@ -332,7 +315,7 @@ namespace ManejadorDeArchivos
 
         private void guardarInformacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            XmlWriter archivoXml = XmlWriter.Create(@"C:\Users\Reviriego\Desktop\archivoxml.xml");
+            XmlWriter archivoXml = XmlWriter.Create(@"archivoxml.xml");
             archivoXml.WriteStartDocument();
             archivoXml.WriteStartElement("Ruta");
             foreach (var dirarb in directoriosArbol)
@@ -397,9 +380,6 @@ namespace ManejadorDeArchivos
                     DirectoryInfo di = new DirectoryInfo(path);
                     directoriosArbol.Add(di);
                     tvFile.Nodes.Add(armarArbol(di));
-                    
-                    Nodo n1 = new Nodo(di.Name, "rrr");
-                    descripciones.Add(n1);
                 }
                 
             }
@@ -416,8 +396,8 @@ namespace ManejadorDeArchivos
                 if(dir.FullName.Contains(e.Node.Text))
                 {
                     tboxRuta.Text = dir.FullName;
-                    loadButtonAction();
-                    loadButtonActionLista();
+                    actualizar();
+                    actualizarLista();
                 }
                 
             }
@@ -442,15 +422,15 @@ namespace ManejadorDeArchivos
                
             }
             retroceder();
-            loadButtonAction();
-            loadButtonActionLista();
+            actualizar();
+            actualizarLista();
         }
 
        
 
         private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(@"C:\Users\Reviriego\Desktop\archivoxml.xml");
+            Process.Start(@"archivoxml.xml");
 
         }
 
