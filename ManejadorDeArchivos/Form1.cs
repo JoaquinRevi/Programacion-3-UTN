@@ -422,8 +422,9 @@ namespace ManejadorDeArchivos
             foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
             {
                 string ruta = nodo1.Attributes["Ruta"].Value;
-                MessageBox.Show(ruta);
-
+                //MessageBox.Show(ruta);
+                DirectoryInfo d = new DirectoryInfo(ruta);
+               tvFile.Nodes.Add(armarArbol(d));
             }
 
         }
