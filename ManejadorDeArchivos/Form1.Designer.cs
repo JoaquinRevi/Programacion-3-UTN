@@ -63,6 +63,9 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cambiarDescripcionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,6 +76,7 @@ namespace ManejadorDeArchivos
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -146,7 +150,9 @@ namespace ManejadorDeArchivos
             this.FechadeCreacion,
             this.Tamaño,
             this.DirectorioPrincipal,
-            this.Rutacompleta});
+            this.Rutacompleta,
+            this.Descripcion});
+            this.listView3.ContextMenuStrip = this.contextMenuStrip2;
             this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(3, 16);
@@ -387,6 +393,25 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarDescripcionToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(184, 48);
+            // 
+            // cambiarDescripcionToolStripMenuItem
+            // 
+            this.cambiarDescripcionToolStripMenuItem.Name = "cambiarDescripcionToolStripMenuItem";
+            this.cambiarDescripcionToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.cambiarDescripcionToolStripMenuItem.Text = "Cambiar descripcion";
+            this.cambiarDescripcionToolStripMenuItem.Click += new System.EventHandler(this.cambiarDescripcionToolStripMenuItem_Click);
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.Text = "Descripcion";
+            this.Descripcion.Width = 200;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,6 +443,7 @@ namespace ManejadorDeArchivos
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,6 +483,9 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ColumnHeader Tamaño;
         private System.Windows.Forms.ColumnHeader DirectorioPrincipal;
         private System.Windows.Forms.ColumnHeader Rutacompleta;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ColumnHeader Descripcion;
+        private System.Windows.Forms.ToolStripMenuItem cambiarDescripcionToolStripMenuItem;
     }
 }
 

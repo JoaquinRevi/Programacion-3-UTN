@@ -175,14 +175,14 @@ namespace ManejadorDeArchivos
                     foreach (var arch in archivos)
                     {
                         
-                        string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString()+" bytes", arch.Directory.ToString(), arch.DirectoryName.ToString()};
+                        string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString()+" bytes", arch.Directory.ToString(), arch.DirectoryName.ToString(), string.Empty};
                         
                         listView3.Items.Add(new ListViewItem(s1,1));
                     }
                     int cont = 0;
                     foreach (var dir in directorios)
                     {
-                        string[] s1 = { dir.Name, dir.Extension, dir.CreationTime.ToString(), "", dir.FullName, dir.FullName};
+                        string[] s1 = { dir.Name, dir.Extension, dir.CreationTime.ToString(), string.Empty, dir.FullName, dir.FullName, string.Empty};
                         listView3.Items.Add(new ListViewItem(s1, 0));
                     }
                 }
@@ -420,6 +420,24 @@ namespace ManejadorDeArchivos
             this.Close();
         }
 
+        private void cambiarDescripcionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 dialog = new Form2();
 
+            try
+            {
+                //cambiar desc
+                dialog.ShowDialog();
+                listView3.SelectedItems[0].SubItems[6].Text = dialog.NuevoNombre;
+
+            }
+            catch (Exception ez)
+            {
+
+            }
+            retroceder();
+            actualizar();
+            actualizarLista();
+        }
     }
 }
