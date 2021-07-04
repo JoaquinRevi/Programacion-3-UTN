@@ -425,6 +425,7 @@ namespace ManejadorDeArchivos
                 //MessageBox.Show(ruta);
                 DirectoryInfo d = new DirectoryInfo(ruta);
                tvFile.Nodes.Add(armarArbol(d));
+               directoriosArbol.Add(d);
             }
 
         }
