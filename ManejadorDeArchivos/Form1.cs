@@ -367,8 +367,12 @@ namespace ManejadorDeArchivos
             archivoXml.WriteStartElement("Ruta");
             foreach (var dirarb in directoriosArbol)
             {
-
-                archivoXml.WriteStartElement(@dirarb.Name);
+                if (dirarb.Name[1].ToString() == ":")
+                {
+                    archivoXml.WriteStartElement("Disco_" + @dirarb.Name[0].ToString());
+                }
+                else archivoXml.WriteStartElement(@dirarb.Name);
+                archivoXml.WriteAttributeString("Ruta",dirarb.FullName);
                 archivoXml.WriteStartElement("Carpetas");
                 foreach (var dir in dirarb.GetDirectories())
                 {
@@ -412,7 +416,16 @@ namespace ManejadorDeArchivos
   
         private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(@"archivoxml.xml");
+            XmlDocument leerdocumento = new XmlDocument();
+            leerdocumento.Load("archivoxml.xml");
+            Form3 form3 = new Form3();
+            foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
+            {
+                string ruta = nodo1.Attributes["Ruta"].Value;
+                MessageBox.Show(ruta);
+
+            }
+
         }
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
