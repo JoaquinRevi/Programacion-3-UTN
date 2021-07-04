@@ -454,5 +454,15 @@ namespace ManejadorDeArchivos
             actualizar();
             actualizarLista();
         }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            directoriosArbol.RemoveAt(tvFile.SelectedNode.Index);
+            tvFile.SelectedNode.Remove();
+            foreach(var caca in directoriosArbol) 
+            {
+                MessageBox.Show(caca.FullName);
+            }
+        }
     }
 }
