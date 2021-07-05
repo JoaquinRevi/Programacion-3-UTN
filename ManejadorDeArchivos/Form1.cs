@@ -22,7 +22,7 @@ namespace ManejadorDeArchivos
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
         List<DirectoryInfo> directoriosArbol = new List<DirectoryInfo>();
-
+        List<string> comentarios = new List<string>();
 
         public Form1()
         {
@@ -362,7 +362,7 @@ namespace ManejadorDeArchivos
 
 
         private void guardarInformacionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        { int cont = 0;
             XmlWriter archivoXml = XmlWriter.Create(@"archivoxml.xml");
             archivoXml.WriteStartDocument();
             archivoXml.WriteStartElement("Ruta");
@@ -373,7 +373,16 @@ namespace ManejadorDeArchivos
                     archivoXml.WriteStartElement("Disco_" + @dirarb.Name[0].ToString());
                 }
                 else archivoXml.WriteStartElement(@dirarb.Name);
+                //foreach (var com in comentarios) 
+                //{
+                //    if (com[0].ToString() == cont.ToString()) 
+                //    {
+                //        archivoXml.WriteAttributeString("Comentario", com);
+                //        cont++;
+                //    }
+                //}
                 archivoXml.WriteAttributeString("Ruta",dirarb.FullName);
+               
                 archivoXml.WriteStartElement("Carpetas");
                 foreach (var dir in dirarb.GetDirectories())
                 {
@@ -428,6 +437,7 @@ namespace ManejadorDeArchivos
   
         private void informacionDeSesionesAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string leerComentario = string.Empty;
             XmlDocument leerdocumento = new XmlDocument();
             leerdocumento.Load("archivoxml.xml");
             foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
@@ -439,6 +449,13 @@ namespace ManejadorDeArchivos
                 {
                     tvFile.Nodes.Add(armarArbol(d));
                     directoriosArbol.Add(d);
+                    foreach(TreeNode nod in tvFile.Nodes) 
+                    {
+                        if (nod.Text == d.Name) 
+                        {
+                            nod.Name = nodo1.Attributes["Comentario"].Value;
+                        }
+                    }
                 }
                 else
                 {
@@ -481,9 +498,9 @@ namespace ManejadorDeArchivos
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(var dir in directoriosArbol)
+            foreach(var dir in comentarios)
             {
-                MessageBox.Show(dir.FullName);
+                MessageBox.Show(dir);
             }
         }
 
@@ -516,6 +533,14 @@ namespace ManejadorDeArchivos
             Form2 form2 = new Form2();
             form2.ShowDialog();
             comentario = form2.NuevoNombre; // añade comentario
+            tvFile.SelectedNode.Name = comentario;
+            comentarios.Add(tvFile.SelectedNode.Index+comentario);
+        }
+
+        private void verDescripciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Descripción de " + tvFile.SelectedNode.Text + ": " + tvFile.SelectedNode.Name);
+            //MessageBox.Show(comentarios[tvFile.SelectedNode.Index]);
         }
     }
 }
