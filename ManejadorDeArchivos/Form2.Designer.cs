@@ -47,7 +47,7 @@ namespace ManejadorDeArchivos
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Renombrar";
+            this.button1.Text = "Editar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -70,7 +70,7 @@ namespace ManejadorDeArchivos
             this.Controls.Add(this.textBox1);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cambiar Nombre";
+            this.Text = "Edit";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

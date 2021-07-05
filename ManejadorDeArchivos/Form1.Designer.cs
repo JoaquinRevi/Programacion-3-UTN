@@ -34,6 +34,8 @@ namespace ManejadorDeArchivos
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tvFile = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.listView3 = new System.Windows.Forms.ListView();
@@ -66,21 +68,20 @@ namespace ManejadorDeArchivos
             this.guardarInformacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informacionDeSesionesAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarDescripciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.contextMenuStrip3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.contextMenuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -127,6 +128,21 @@ namespace ManejadorDeArchivos
             this.tvFile.Size = new System.Drawing.Size(471, 324);
             this.tvFile.TabIndex = 0;
             this.tvFile.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFile_NodeMouseClick);
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem,
+            this.editarDescripciónToolStripMenuItem});
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(181, 70);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // iconList
             // 
@@ -417,24 +433,17 @@ namespace ManejadorDeArchivos
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eliminarToolStripMenuItem});
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(118, 26);
-            // 
-            // eliminarToolStripMenuItem
-            // 
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eliminarToolStripMenuItem.Text = "Eliminar";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
-            // 
             // contextMenuStrip4
             // 
             this.contextMenuStrip4.Name = "contextMenuStrip4";
             this.contextMenuStrip4.Size = new System.Drawing.Size(61, 4);
+            // 
+            // editarDescripciónToolStripMenuItem
+            // 
+            this.editarDescripciónToolStripMenuItem.Name = "editarDescripciónToolStripMenuItem";
+            this.editarDescripciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editarDescripciónToolStripMenuItem.Text = "Editar Descripción";
+            this.editarDescripciónToolStripMenuItem.Click += new System.EventHandler(this.editarDescripciónToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -460,6 +469,7 @@ namespace ManejadorDeArchivos
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.contextMenuStrip3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -468,7 +478,6 @@ namespace ManejadorDeArchivos
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -514,6 +523,7 @@ namespace ManejadorDeArchivos
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
+        private System.Windows.Forms.ToolStripMenuItem editarDescripciónToolStripMenuItem;
     }
 }
 

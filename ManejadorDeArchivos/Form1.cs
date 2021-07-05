@@ -17,6 +17,7 @@ namespace ManejadorDeArchivos
     public partial class Form1 : Form
     {
         static string ruta = @"C:\";
+        private string comentario = string.Empty;
         private string ruta2 = @"D:\";
         private bool booleano = false;
         private string rutaDeArchivoSeleccionado = string.Empty;
@@ -240,13 +241,7 @@ namespace ManejadorDeArchivos
             string archivo;
             try
             {
-                if (booleano)
-                {
-                    archivo = ruta + "//" + rutaDeArchivoSeleccionado;
-                    Process.Start(archivo);
-                }
-                else
-                {
+
                     
                     
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
@@ -268,7 +263,7 @@ namespace ManejadorDeArchivos
      
                     }
                     return treenode;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -285,16 +280,22 @@ namespace ManejadorDeArchivos
 
             foreach (DirectoryInfo dir in directoriosArbol)
             {
-
-                if (dir.FullName.Contains(e.Node.Text))
+                if (dir.Exists)
                 {
-                    tboxRuta.Text = dir.FullName;
-                    actualizar();
-                    actualizarLista();
+                    if (dir.FullName.Contains(e.Node.Text))
+                    {
+                        tboxRuta.Text = dir.FullName;
+                        actualizar();
+                        actualizarLista();
+                        //MessageBox.Show("enre mal");
+                    }
                 }
-     
+                else 
+                {
+                    //MessageBox.Show("entre bien");
+                }
             }
-
+ 
         }
 
 
@@ -376,30 +377,41 @@ namespace ManejadorDeArchivos
                 archivoXml.WriteStartElement("Carpetas");
                 foreach (var dir in dirarb.GetDirectories())
                 {
-                    archivoXml.WriteStartElement("Nombre");
-                    archivoXml.WriteString(dir.Name + "");
+                    archivoXml.WriteStartElement("Directory");
+                    archivoXml.WriteAttributeString("Nombre", dir.Name);
+                    archivoXml.WriteAttributeString("Ult-Modificacion", dir.LastAccessTime.ToString());
+                    archivoXml.WriteAttributeString("Creacion", dir.CreationTime.ToString());
                     archivoXml.WriteEndElement();
-                    archivoXml.WriteStartElement("Ult-Modificacion");
-                    archivoXml.WriteString(dir.LastAccessTime + "");
-                    archivoXml.WriteEndElement();
-                    archivoXml.WriteStartElement("Creacion");
-                    archivoXml.WriteString(dir.CreationTime + "");
-                    archivoXml.WriteEndElement();
+                    //archivoXml.WriteStartElement("Nombre");
+                    //archivoXml.WriteString(dir.Name + "");
+                    //archivoXml.WriteEndElement();
+                    //archivoXml.WriteStartElement("Ult-Modificacion");
+                    //archivoXml.WriteString(dir.LastAccessTime + "");
+                    //archivoXml.WriteEndElement();
+                    //archivoXml.WriteStartElement("Creacion");
+                    //archivoXml.WriteString(dir.CreationTime + "");
+                    //archivoXml.WriteEndElement();
 
                 }
                 archivoXml.WriteEndElement();
                 archivoXml.WriteStartElement("Archivos");
                 foreach (var arch in dirarb.GetFiles())
                 {
-                    archivoXml.WriteStartElement("Nombre");
-                    archivoXml.WriteString(arch.Name + "");
+                    archivoXml.WriteStartElement("File");
+                    archivoXml.WriteAttributeString("Nombre", arch.Name);
+                    archivoXml.WriteAttributeString("Tamaño", arch.Length.ToString());
+                    archivoXml.WriteAttributeString("Creacion", arch.CreationTime.ToString());
                     archivoXml.WriteEndElement();
-                    archivoXml.WriteStartElement("Tamaño");
-                    archivoXml.WriteString(arch.Length + "");
-                    archivoXml.WriteEndElement();
-                    archivoXml.WriteStartElement("Creacion");
-                    archivoXml.WriteString(arch.CreationTime + "");
-                    archivoXml.WriteEndElement();
+
+                    //archivoXml.WriteStartElement("Nombre");
+                    //archivoXml.WriteString(arch.Name + "");
+                    //archivoXml.WriteEndElement();
+                    //archivoXml.WriteStartElement("Tamaño");
+                    //archivoXml.WriteString(arch.Length + "");
+                    //archivoXml.WriteEndElement();
+                    //archivoXml.WriteStartElement("Creacion");
+                    //archivoXml.WriteString(arch.CreationTime + "");
+                    //archivoXml.WriteEndElement();
                 }
 
 
@@ -418,21 +430,61 @@ namespace ManejadorDeArchivos
         {
             XmlDocument leerdocumento = new XmlDocument();
             leerdocumento.Load("archivoxml.xml");
-            Form3 form3 = new Form3();
             foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
             {
                 string ruta = nodo1.Attributes["Ruta"].Value;
                 //MessageBox.Show(ruta);
                 DirectoryInfo d = new DirectoryInfo(ruta);
-               tvFile.Nodes.Add(armarArbol(d));
-               directoriosArbol.Add(d);
-            }
+                if (d.Exists)
+                {
+                    tvFile.Nodes.Add(armarArbol(d));
+                    directoriosArbol.Add(d);
+                }
+                else
+                {
+                    
+                    TreeNode tnExist = new TreeNode(d.Name);
+                    booleano = false;
+                    if (d.FullName == ruta)
+                    {
+                        //nodo1.Name y nodo.Inndertext
+                        foreach (XmlNode nodoshijos in nodo1.ChildNodes)
+                        {
+                            foreach (XmlNode nodosinformacion in nodoshijos.ChildNodes)
+                            {
+                                if (booleano)
+                                {
+                                    TreeNode nodohijo = new TreeNode(nodosinformacion.Attributes["Nombre"].Value, 1, 1);
+                                    tnExist.Nodes.Add(nodohijo);
+                                    
+                                }
+                                else
+                                {
+                                    TreeNode nodohijo = new TreeNode(nodosinformacion.Attributes["Nombre"].Value, 0, 0);
+                                    tnExist.Nodes.Add(nodohijo);
+                                    
+                                }
+                                
+                            }
+                            booleano = true;
+                        }
 
+
+                    }
+                    tvFile.Nodes.Add(tnExist);
+                    booleano = false;
+                }
+
+ 
+            }
         }
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            foreach(var dir in directoriosArbol)
+            {
+                MessageBox.Show(dir.FullName);
+            }
         }
 
         private void cambiarDescripcionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -450,19 +502,20 @@ namespace ManejadorDeArchivos
             {
 
             }
-            retroceder();
-            actualizar();
-            actualizarLista();
+
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             directoriosArbol.RemoveAt(tvFile.SelectedNode.Index);
             tvFile.SelectedNode.Remove();
-            foreach(var caca in directoriosArbol) 
-            {
-                MessageBox.Show(caca.FullName);
-            }
+        }
+
+        private void editarDescripciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+            comentario = form2.NuevoNombre; // añade comentario
         }
     }
 }
