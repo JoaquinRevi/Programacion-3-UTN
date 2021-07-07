@@ -241,9 +241,6 @@ namespace ManejadorDeArchivos
             string archivo;
             try
             {
-
-                    
-                    
                     FileInfo[] archivos = listaDeArchivos.GetFiles();
                     DirectoryInfo[] directorios = listaDeArchivos.GetDirectories();
                    
@@ -292,8 +289,65 @@ namespace ManejadorDeArchivos
                 }
                 else 
                 {
-                    //MessageBox.Show("entre bien");
+                    //XmlDocument leerdocumento = new XmlDocument();
+                    //leerdocumento.Load("archivoxml.xml");
+                    //ListViewItem lvi3 = new ListViewItem(dir.Name);
+                    //foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
+                    //{
+                    //    string ruta = nodo1.Attributes["Ruta"].Value;
+                    //    //MessageBox.Show("entre bien");
+                        
+                    //    //booleano = false;
+                    //    if (dir.FullName == ruta)
+                    //    {
+                    //        //nodo1.Name y nodo.Inndertext
+                    //        foreach (XmlNode nodoshijos in nodo1.ChildNodes)
+                    //        {
+                    //            foreach (XmlNode nodosinformacion in nodoshijos.ChildNodes)
+                    //            {
+                    //                if (booleano)
+                    //                {
+                    //                    ListViewItem.ListViewSubItem lvi = new ListViewItem.ListViewSubItem(nodosinformacion.Attributes["Nombre"].Value, 1, 1);
+                    //                    lvi3.SubItems.Add(lvi);
+
+                    //                }
+                    //                else
+                    //                {
+                    //                    TreeNode nodohijo = new TreeNode(nodosinformacion.Attributes["Nombre"].Value, 0, 0);
+                    //                    tnExist.Nodes.Add(nodohijo);
+
+                    //                }
+
+                    //            }
+                    //            booleano = true;
+                    //        }
+
+
+                    //    }
+                    //    tvFile.Nodes.Add(tnExist);
+                    //    booleano = false;
+
+                    //    //--
+
+                    //    listView3.Items.Clear();
+
+                        //foreach (var arch in archivos)
+                        //{
+
+                        //    string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString() + " bytes", arch.Directory.ToString(), arch.DirectoryName.ToString(), string.Empty };
+
+                        //    listView3.Items.Add(new ListViewItem(s1, 1));
+                        //}
+                        //int cont = 0;
+                        //foreach (var dir in directorios)
+                        //{
+                        //    string[] s1 = { dir.Name, dir.Extension, dir.CreationTime.ToString(), string.Empty, dir.FullName, dir.FullName, string.Empty };
+                        //    listView3.Items.Add(new ListViewItem(s1, 0));
+                        //}
+                    //}
+                
                 }
+
             }
  
         }
@@ -455,7 +509,7 @@ namespace ManejadorDeArchivos
                     {
                         if (nod.Text == d.Name) 
                         {
-                            nod.Name = nodo1.Attributes["Comentario"].Value;
+                            nod.Name = nodo1.Attributes["Comentario"].Value.Remove(0, 1);
                         }
                     }
                 }
@@ -491,6 +545,13 @@ namespace ManejadorDeArchivos
 
                     }
                     tvFile.Nodes.Add(tnExist);
+                    //foreach (TreeNode nod in tvFile.Nodes)
+                    //{
+                    //    if (nod.Text == d.Name)
+                    //    {
+                    //        nod.Name = nodo1.Attributes["Comentario"].Value;
+                    //    }
+                    //}
                     booleano = false;
                 }
 
@@ -541,7 +602,13 @@ namespace ManejadorDeArchivos
 
         private void verDescripciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Descripción de " + tvFile.SelectedNode.Text + ": " + tvFile.SelectedNode.Name);
+            try
+            {
+                MessageBox.Show("Descripción de " + tvFile.SelectedNode.Text + ": " + tvFile.SelectedNode.Name);
+            } catch(Exception ex) 
+            {
+                MessageBox.Show("Aún no tiene descripción!");
+            }
             //MessageBox.Show(comentarios[tvFile.SelectedNode.Index]);
         }
     }
