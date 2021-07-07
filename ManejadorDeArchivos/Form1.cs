@@ -373,14 +373,16 @@ namespace ManejadorDeArchivos
                     archivoXml.WriteStartElement("Disco_" + @dirarb.Name[0].ToString());
                 }
                 else archivoXml.WriteStartElement(@dirarb.Name);
-                //foreach (var com in comentarios) 
-                //{
-                //    if (com[0].ToString() == cont.ToString()) 
-                //    {
-                //        archivoXml.WriteAttributeString("Comentario", com);
-                //        cont++;
-                //    }
-                //}
+                foreach (var com in comentarios)
+                {
+                    if (com[0].ToString().Equals(cont.ToString()))
+                    {
+                        MessageBox.Show("mensaje guardado: "+ com);
+                        archivoXml.WriteAttributeString("Comentario", com);
+                        cont++;
+                        break;
+                    }
+                }
                 archivoXml.WriteAttributeString("Ruta",dirarb.FullName);
                
                 archivoXml.WriteStartElement("Carpetas");
