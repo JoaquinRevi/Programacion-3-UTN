@@ -274,6 +274,7 @@ namespace ManejadorDeArchivos
         private void tvFile_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             info_label.Visible = false;
+            string leerComentario = string.Empty;
 
             foreach (DirectoryInfo dir in directoriosArbol)
             {
@@ -284,71 +285,53 @@ namespace ManejadorDeArchivos
                         tboxRuta.Text = dir.FullName;
                         actualizar();
                         actualizarLista();
+                        break;
                         //MessageBox.Show("enre mal");
                     }
                 }
-                else 
+                else
                 {
-                    //XmlDocument leerdocumento = new XmlDocument();
-                    //leerdocumento.Load("archivoxml.xml");
-                    //ListViewItem lvi3 = new ListViewItem(dir.Name);
-                    //foreach (XmlNode nodo1 in leerdocumento.DocumentElement.ChildNodes)
-                    //{
-                    //    string ruta = nodo1.Attributes["Ruta"].Value;
-                    //    //MessageBox.Show("entre bien");
+                    booleano = false;
+                    listView1.Clear();
+                    XmlDocument leerdocumento = new XmlDocument();
+                    leerdocumento.Load("archivoxml.xml");
+                    foreach (XmlNode nodo in leerdocumento.DocumentElement.ChildNodes)
+                    {
+
+                        if (e.Node.Text == nodo.Attributes["Ruta"].Value)
+                        {
+                            
+                            foreach (XmlNode nodohijos in nodo.ChildNodes)
+                            {
+                                foreach (XmlNode nodoinformacion in nodohijos.ChildNodes)
+                                {
+                                    if (booleano)
+                                    {
+                                        listView1.Items.Add(nodoinformacion.Attributes["Nombre"].Value,1);
+                                        string[] s1 = { nodoinformacion.Attributes["Nombre"].Value, nodoinformacion.Attributes["Nombre"].Value.Substring(nodoinformacion.Attributes["Nombre"].Value.Length - 4), nodoinformacion.Attributes["Creacion"].Value, nodoinformacion.Attributes["Tamaño"].Value, nodo.Attributes["Ruta"].Value, nodo.Attributes["Ruta"].Value, string.Empty };
+                                        listView3.Items.Add(new ListViewItem(s1, 1));
+                                    }
+                                    else
+                                    {
+
+                                        listView1.Items.Add(nodoinformacion.Attributes["Nombre"].Value,0);
+                                        string[] s1 = { nodoinformacion.Attributes["Nombre"].Value,"Carpeta", nodoinformacion.Attributes["Creacion"].Value, string.Empty , nodo.Attributes["Ruta"].Value, nodo.Attributes["Ruta"].Value, string.Empty };
+
+                                        listView3.Items.Add(new ListViewItem(s1, 0));
+                                    }
+
+                                }
+                                booleano = true;
+                            }
+                            break;
                         
-                    //    //booleano = false;
-                    //    if (dir.FullName == ruta)
-                    //    {
-                    //        //nodo1.Name y nodo.Inndertext
-                    //        foreach (XmlNode nodoshijos in nodo1.ChildNodes)
-                    //        {
-                    //            foreach (XmlNode nodosinformacion in nodoshijos.ChildNodes)
-                    //            {
-                    //                if (booleano)
-                    //                {
-                    //                    ListViewItem.ListViewSubItem lvi = new ListViewItem.ListViewSubItem(nodosinformacion.Attributes["Nombre"].Value, 1, 1);
-                    //                    lvi3.SubItems.Add(lvi);
-
-                    //                }
-                    //                else
-                    //                {
-                    //                    TreeNode nodohijo = new TreeNode(nodosinformacion.Attributes["Nombre"].Value, 0, 0);
-                    //                    tnExist.Nodes.Add(nodohijo);
-
-                    //                }
-
-                    //            }
-                    //            booleano = true;
-                    //        }
-
-
-                    //    }
-                    //    tvFile.Nodes.Add(tnExist);
-                    //    booleano = false;
-
-                    //    //--
-
-                    //    listView3.Items.Clear();
-
-                        //foreach (var arch in archivos)
-                        //{
-
-                        //    string[] s1 = { arch.Name, arch.Extension, arch.CreationTime.ToString(), arch.Length.ToString() + " bytes", arch.Directory.ToString(), arch.DirectoryName.ToString(), string.Empty };
-
-                        //    listView3.Items.Add(new ListViewItem(s1, 1));
-                        //}
-                        //int cont = 0;
-                        //foreach (var dir in directorios)
-                        //{
-                        //    string[] s1 = { dir.Name, dir.Extension, dir.CreationTime.ToString(), string.Empty, dir.FullName, dir.FullName, string.Empty };
-                        //    listView3.Items.Add(new ListViewItem(s1, 0));
-                        //}
-                    //}
-                
+                        }
+                    }
+                    booleano = false;
                 }
 
             }
+
  
         }
 
@@ -431,11 +414,11 @@ namespace ManejadorDeArchivos
                 {
                     if (com[0].ToString().Equals(cont.ToString()))
                     {
-                        MessageBox.Show("mensaje guardado: "+ com);
                         archivoXml.WriteAttributeString("Comentario", com);
                         cont++;
                         break;
                     }
+
                 }
                 archivoXml.WriteAttributeString("Ruta",dirarb.FullName);
                
@@ -505,11 +488,19 @@ namespace ManejadorDeArchivos
                 {
                     tvFile.Nodes.Add(armarArbol(d));
                     directoriosArbol.Add(d);
+                    comentarios.Add(" ");
                     foreach(TreeNode nod in tvFile.Nodes) 
                     {
                         if (nod.Text == d.Name) 
                         {
-                            nod.Name = nodo1.Attributes["Comentario"].Value.Remove(0, 1);
+                            try
+                            {
+                                nod.Name = nodo1.Attributes["Comentario"].Value.Remove(0, 1);
+                            }
+                            catch(Exception ex)
+                            {
+
+                            }
                         }
                     }
                 }
@@ -545,13 +536,14 @@ namespace ManejadorDeArchivos
 
                     }
                     tvFile.Nodes.Add(tnExist);
-                    //foreach (TreeNode nod in tvFile.Nodes)
-                    //{
-                    //    if (nod.Text == d.Name)
-                    //    {
-                    //        nod.Name = nodo1.Attributes["Comentario"].Value;
-                    //    }
-                    //}
+                    directoriosArbol.Add(d);
+                    foreach (TreeNode nod in tvFile.Nodes)
+                    {
+                        if (nod.Text == d.Name)
+                        {
+                            nod.Name = nodo1.Attributes["Comentario"].Value.Remove(0, 1);
+                        }
+                    }
                     booleano = false;
                 }
 
@@ -561,10 +553,7 @@ namespace ManejadorDeArchivos
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(var dir in comentarios)
-            {
-                MessageBox.Show(dir);
-            }
+            this.Close();
         }
 
         private void cambiarDescripcionToolStripMenuItem_Click(object sender, EventArgs e)
